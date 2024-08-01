@@ -1,559 +1,966 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "",
-        "version": ""
+  "openapi": "3.0.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
     },
-    "components": {
-        "schemas": {},
-        "responses": {},
-        "parameters": {},
-        "examples": {},
-        "requestBodies": {},
-        "headers": {},
-        "securitySchemes": {
-            "BearerAuth": {
-                "type": "http",
-                "scheme": "bearer",
-                "description": "Bearer authentication header of the form Bearer `<token>`, where `<token>` is your [auth token](/api-reference/v2/general/authentication)."
-            }
-        },
-        "links": {},
-        "callbacks": {}
-    },
-    "paths": {
-        "/tables": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "List of Glide Big Tables in the current team",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "description": "A collection of table objects as id/name pairs",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string",
-                                                        "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`"
-                                                    },
-                                                    "name": {
-                                                        "type": "string",
-                                                        "description": "Name of the table, e.g., `Invoices`"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "id",
-                                                    "name"
-                                                ],
-                                                "additionalProperties": false
-                                            },
-                                            "example": [
-                                                {
-                                                    "id": "2a1bad8b-cf7c-44437-b8c1-e3782df6",
-                                                    "name": "Invoices"
-                                                },
-                                                {
-                                                    "id": "93a19-cf7c-44437-b8c1-e9acbbb",
-                                                    "name": "Line Items"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "required": [
-                                        "data"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            }
-                        }
+    "links": {},
+    "callbacks": {}
+  },
+  "paths": {
+    "/tables": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      }
                     }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
                 }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "tableID": {
+                          "type": "string",
+                          "description": "ID of the created table"
+                        },
+                        "rowIDs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Row IDs of added rows"
+                        }
+                      },
+                      "required": [
+                        "tableID",
+                        "rowIDs"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "column_id_reserved",
+                            "column_id_not_unique",
+                            "column_has_invalid_value",
+                            "column_id_not_found"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Create table",
+        "parameters": [
+          {
+            "name": "onSchemaError",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "description": "Abort the entire operation and return an error",
+                  "enum": [
+                    "abort"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Ignore the columns that caused the error, and do not import any data from them",
+                  "enum": [
+                    "dropColumns"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Update the schema as needed to add any missing columns or widen the data types of existing columns, and then import the data from them",
+                  "enum": [
+                    "updateSchema"
+                  ]
+                }
+              ]
             },
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "Table successfully created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "tableID": {
-                                                    "type": "string",
-                                                    "description": "ID of the created table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`"
-                                                },
-                                                "rowIDs": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    },
-                                                    "description": "Row IDs of added rows, e.g.,\n\n```json\n[\n\t\"2a1bad8b-cf7c-44437-b8c1-e3782df6\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```"
-                                                }
-                                            },
-                                            "required": [
-                                                "tableID",
-                                                "rowIDs"
-                                            ],
-                                            "additionalProperties": false,
-                                            "description": "The newly created table ID and IDs of all rows added",
-                                            "example": {
-                                                "tableID": "2a1bad8b-cf7c-44437-b8c1-e3782df6",
-                                                "rowIDs": [
-                                                    "2a1bad8b-cf7c-44437-b8c1-e3782df6",
-                                                    "93a19-cf7c-44437-b8c1-e9acbbb"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "data"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            }
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "rows": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {}
                         }
-                    }
-                },
-                "operationId": "Create table",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "Name of the table, e.g., `Employees`",
-                                        "example": "Employees"
-                                    },
-                                    "schema": {
-                                        "type": "object",
-                                        "properties": {
-                                            "columns": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "string",
-                                                            "description": "Internal ID of the column, e.g., `name`. This value cannot be changed once created."
-                                                        },
-                                                        "displayName": {
-                                                            "type": "string",
-                                                            "description": "Human readable display name of the column, e.g., `Name`. Can be modified once created."
-                                                        },
-                                                        "type": {
-                                                            "type": "string",
-                                                            "description": "Type of the column. Can be one of: `string`, `number`, `dateTime`, `boolean`, `uri`, `json`"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "id",
-                                                        "type"
-                                                    ]
-                                                },
-                                                "description": "Collection of column definitions, in the order that they are to be displayed in the table",
-                                                "example": [
-                                                    {
-                                                        "id": "fullName",
-                                                        "displayName": "Name",
-                                                        "kind": "string"
-                                                    },
-                                                    {
-                                                        "id": "ageInYears",
-                                                        "displayName": "Age",
-                                                        "kind": "number"
-                                                    },
-                                                    {
-                                                        "id": "hiredOn",
-                                                        "displayName": "Hire Date",
-                                                        "kind": "dateTime"
-                                                    }
-                                                ]
-                                            }
-                                        },
-                                        "description": "The schema of the table as a collection of column definitions",
-                                        "additionalProperties": false
-                                    },
-                                    "rows": {
-                                        "anyOf": [
-                                            {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "additionalProperties": {}
-                                                },
-                                                "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"ageInYears\": 30,\n\t\t\"hiredOn\": \"2021-07-03\"\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"ageInYears\": 34,\n\t\t\"hiredOn\": \"2023-01-015\"\n\t}\n]\n```",
-                                                "example": [
-                                                    {
-                                                        "fullName": "Alex Bard",
-                                                        "ageInYears": 30,
-                                                        "hiredOn": "2021-07-03"
-                                                    },
-                                                    {
-                                                        "fullName": "Alicia Hines",
-                                                        "ageInYears": 34,
-                                                        "hiredOn": "2023-01-015"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "object",
-                                                "properties": {
-                                                    "$stashID": {
-                                                        "type": "string",
-                                                        "description": "ID of the stash whose row data should be used to populate the table, e.g., `20240215-job32`"
-                                                    }
-                                                },
-                                                "description": "A single reference to a stash whose row data should be used to populate the table",
-                                                "required": [
-                                                    "$stashID"
-                                                ],
-                                                "additionalProperties": false
-                                            }
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "name",
-                                    "schema"
-                                ],
-                                "additionalProperties": false
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/tables/{tableID}": {
-            "put": {
-                "responses": {
-                    "200": {
-                        "description": "Table successfully overwritten",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "rowIDs": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    },
-                                                    "description": "Row IDs of added rows",
-                                                    "example": [
-                                                        "2a1bad8b-cf7c-44437-b8c1-e3782df6",
-                                                        "93a19-cf7c-44437-b8c1-e9acbbb"
-                                                    ]
-                                                }
-                                            },
-                                            "required": [
-                                                "rowIDs"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    },
-                                    "additionalProperties": false,
-                                    "required": [
-                                        "data"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "operationId": "Overwrite table",
-                "parameters": [
-                    {
-                        "name": "tableID",
-                        "in": "path",
-                        "schema": {
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "$stashID": {
                             "type": "string"
+                          }
                         },
-                        "required": true,
-                        "description": "ID of the table to overwrite, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`"
-                    }
+                        "required": [
+                          "$stashID"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "schema",
+                  "rows"
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "schema": {
-                                        "type": "object",
-                                        "properties": {
-                                            "columns": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "string",
-                                                            "description": "Internal ID of the column, e.g., `name`. This value cannot be changed once created."
-                                                        },
-                                                        "displayName": {
-                                                            "type": "string",
-                                                            "description": "Human readable display name of the column, e.g., `Name`. Can be modified once created."
-                                                        },
-                                                        "type": {
-                                                            "type": "string",
-                                                            "description": "Type of the column. Can be one of: `string`, `number`, `dateTime`, `boolean`, `uri`, `json`"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "id",
-                                                        "type"
-                                                    ]
-                                                },
-                                                "description": "Collection of column definitions, in the order that they are to be displayed in the table"
-                                            }
-                                        },
-                                        "description": "The schema of the table as a collection of column definitions",
-                                        "additionalProperties": false
-                                    },
-                                    "rows": {
-                                        "anyOf": [
-                                            {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "additionalProperties": {}
-                                                },
-                                                "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"ageInYears\": 30,\n\t\t\"hiredOn\": \"2021-07-03\"\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"ageInYears\": 34,\n\t\t\"hiredOn\": \"2023-01-015\"\n\t}\n]\n```"
-                                            },
-                                            {
-                                                "type": "object",
-                                                "properties": {
-                                                    "$stashID": {
-                                                        "type": "string",
-                                                        "description": "ID of the stash whose row data should be used to populate the table, e.g., `20240215-job32`"
-                                                    }
-                                                },
-                                                "description": "A single reference to a stash whose row data should be used to populate the table",
-                                                "required": [
-                                                    "$stashID"
-                                                ],
-                                                "additionalProperties": false
-                                            }
-                                        ]
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "example": {
-                                    "rows": [
-                                        {
-                                            "fullName": "Alex Bard",
-                                            "ageInYears": 30,
-                                            "hiredOn": "2021-07-03"
-                                        },
-                                        {
-                                            "fullName": "Alicia Hines",
-                                            "ageInYears": 34,
-                                            "hiredOn": "2023-01-015"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
+                "additionalProperties": false
+              }
             }
-        },
-        "/tables/{tableID}/rows": {
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "rowIDs": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    },
-                                                    "description": "Row IDs of added rows"
-                                                }
-                                            },
-                                            "required": [
-                                                "rowIDs"
-                                            ],
-                                            "additionalProperties": false,
-                                            "example": {
-                                                "rowIDs": [
-                                                    "2a1bad8b-cf7c-44437-b8c1-e3782df6",
-                                                    "93a19-cf7c-44437-b8c1-e9acbbb"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "data"
-                                    ],
-                                    "additionalProperties": false
-                                }
-                            }
-                        }
-                    }
-                },
-                "operationId": "Add rows to table",
-                "parameters": [
-                    {
-                        "name": "tableID",
-                        "in": "path",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true,
-                        "description": "ID of the table to add rows to, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`"
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "anyOf": [
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "additionalProperties": {}
-                                        },
-                                        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"ageInYears\": 30,\n\t\t\"hiredOn\": \"2021-07-03\"\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"ageInYears\": 34,\n\t\t\"hiredOn\": \"2023-01-015\"\n\t}\n]\n```",
-                                        "example": [
-                                            {
-                                                "fullName": "Alex Bard",
-                                                "ageInYears": 30,
-                                                "hiredOn": "2021-07-03"
-                                            },
-                                            {
-                                                "fullName": "Alicia Hines",
-                                                "ageInYears": 34,
-                                                "hiredOn": "2023-01-015"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "properties": {
-                                            "$stashID": {
-                                                "type": "string",
-                                                "description": "ID of the stash whose row data should be used to populate the table, e.g., `20240215-job32`"
-                                            }
-                                        },
-                                        "description": "A single reference to a stash whose row data should be used to populate the table",
-                                        "required": [
-                                            "$stashID"
-                                        ],
-                                        "additionalProperties": false
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/stashes/{stashID}/{serial}": {
-            "post": {
-                "responses": {
-                    "200": {
-                        "description": "The data was successfully stashed into the stash with the given stash ID.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {},
-                                    "additionalProperties": false,
-                                    "description": "A 200 HTTP response code indicates that the data was successfully stashed into the stash with the given stash ID.",
-                                    "example": {}
-                                }
-                            }
-                        }
-                    }
-                },
-                "operationId": "Add rows to stash",
-                "parameters": [
-                    {
-                        "name": "stashID",
-                        "in": "path",
-                        "description": "ID of the stash to add rows to, e.g., `20240215-job32`",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
-                    },
-                    {
-                        "name": "serial",
-                        "in": "path",
-                        "description": "Serial identifier of the data to add to the stash. Data subsets will be loaded in the order implied by the serial, so utilize ordered identifiers for each subset if a specific loading sequence is required. E.g., `1`, `2`, etc...\n\nOtherwise a random, but unique value can be used, e.g., `c2a4567`.",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "additionalProperties": {}
-                                },
-                                "description": "An array of data to add to the stash. The data should conform to the requirements of the endpoint where the stash is intended to be used.\n\nFor instance, to reference row data, each entry should have the same schema as the table it is being added to.\n\n```json\n[\n\t{\"Name\": \"Alex\", \"Age\": 30, \"Birthday\": \"2024-07-03T10:24:08.285Z\"},\n\t{\"Name\": \"TomTom\", \"Age\": 26, \"Birthday\": \"2024-07-03T10:27:43.265Z\"},\n\t{\"Name\": \"Foo Bar\", \"Age\": 5}\n]\n```",
-                                "example": [
-                                    {
-                                        "Name": "Alex",
-                                        "Age": 30,
-                                        "Birthday": "2024-07-03T10:24:08.285Z"
-                                    },
-                                    {
-                                        "Name": "TomTom",
-                                        "Age": 26,
-                                        "Birthday": "2024-07-03T10:27:43.265Z"
-                                    },
-                                    {
-                                        "Name": "Foo Bar",
-                                        "Age": 5
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     },
-    "security": [
-        {
-            "BearerAuth": []
+    "/tables/{tableID}": {
+      "put": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "rowIDs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Row IDs of added rows"
+                        }
+                      },
+                      "required": [
+                        "rowIDs"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "table_not_found",
+                            "table_not_big_table"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "column_id_reserved",
+                            "column_id_not_unique",
+                            "column_has_invalid_value",
+                            "column_id_not_found"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Overwrite table",
+        "parameters": [
+          {
+            "name": "tableID",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "onSchemaError",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "description": "Abort the entire operation and return an error",
+                  "enum": [
+                    "abort"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Ignore the columns that caused the error, and do not import any data from them",
+                  "enum": [
+                    "dropColumns"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Update the schema as needed to add any missing columns or widen the data types of existing columns, and then import the data from them",
+                  "enum": [
+                    "updateSchema"
+                  ]
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "rows": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {}
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "$stashID": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "$stashID"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "schema",
+                  "rows"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
         }
-    ],
-    "tags": [],
-    "servers": [
-        {
-            "description": "Production",
-            "url": "https://api.glideapps.com"
+      }
+    },
+    "/tables/{tableID}/rows": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "rowIDs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Row IDs of added rows"
+                        }
+                      },
+                      "required": [
+                        "rowIDs"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "table_not_found",
+                            "table_not_big_table"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "column_has_invalid_value",
+                            "column_id_reserved",
+                            "column_id_not_found"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Add rows to table",
+        "parameters": [
+          {
+            "name": "tableID",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "onSchemaError",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "description": "Abort the entire operation and return an error",
+                  "enum": [
+                    "abort"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Ignore the columns that caused the error, and do not import any data from them",
+                  "enum": [
+                    "dropColumns"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "description": "Update the schema as needed to add any missing columns or widen the data types of existing columns, and then import the data from them",
+                  "enum": [
+                    "updateSchema"
+                  ]
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "$stashID": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "$stashID"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          }
         }
-    ]
+      }
+    },
+    "/stashes": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "stashID": {
+                          "type": "string",
+                          "description": "The newly created stash"
+                        }
+                      },
+                      "required": [
+                        "stashID"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Create stash",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stashes/{stashID}/{serial}": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Add rows to stash",
+        "parameters": [
+          {
+            "name": "stashID",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "serial",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stashes/{stashID}": {
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "operationId": "Delete stash",
+        "parameters": [
+          {
+            "name": "stashID",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [],
+  "servers": [
+    {
+      "description": "Production",
+      "url": "https://api.glideapps.com"
+    }
+  ]
 }
