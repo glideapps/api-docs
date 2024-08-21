@@ -367,7 +367,8 @@
                         "properties": {
                           "$stashID": {
                             "type": "string",
-                            "description": "ID of the stash whose data should be used",
+                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                            "description": "ID of the stash, e.g., `20240215-job32`",
                             "example": "20240215-job32"
                           }
                         },
@@ -695,7 +696,8 @@
                         "properties": {
                           "$stashID": {
                             "type": "string",
-                            "description": "ID of the stash whose data should be used",
+                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                            "description": "ID of the stash, e.g., `20240215-job32`",
                             "example": "20240215-job32"
                           }
                         },
@@ -924,7 +926,8 @@
                     "properties": {
                       "$stashID": {
                         "type": "string",
-                        "description": "ID of the stash whose data should be used",
+                        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                        "description": "ID of the stash, e.g., `20240215-job32`",
                         "example": "20240215-job32"
                       }
                     },
@@ -941,87 +944,11 @@
         }
       }
     },
-    "/stashes": {
-      "post": {
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "stashID": {
-                          "type": "string",
-                          "description": "The newly created stash"
-                        }
-                      },
-                      "required": [
-                        "stashID"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string"
-                        },
-                        "message": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "message"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            }
-          }
-        },
-        "operationId": "Create stash",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {},
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
     "/stashes/{stashID}/{serial}": {
       "post": {
+        "responses": {}
+      },
+      "put": {
         "responses": {
           "200": {
             "description": "",
@@ -1069,14 +996,15 @@
             }
           }
         },
-        "description": "Adds data to a stash",
+        "description": "Sets the content of a chunk of data inside a stash",
         "parameters": [
           {
             "name": "stashID",
             "in": "path",
             "schema": {
               "type": "string",
-              "description": "ID of the stash to add data to, e.g., `20240215-job32`",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+              "description": "ID of the stash. The stash will be created if it doesn't already exist.",
               "example": "20240215-job32"
             },
             "required": true
@@ -1086,7 +1014,9 @@
             "in": "path",
             "schema": {
               "type": "string",
-              "description": "Serial identifier of the chunk of data to add to the stash. Chunks will be assembled in the sort order of their serials, so utilize ordered identifiers for each chunk if a specific ordering of data is required, e.g., `1`, `2`, etc...\nIf the order of data is not important, random, but unique, values can be used, e.g., `c2a4567`."
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+              "description": "Serial identifier of the chunk of data to set in the stash. If a chunk has already been sent with the same serial, its data will be overwritten. Chunks will be assembled in the sort order of their serials, so utilize ordered identifiers for each chunk if a specific ordering of data in the stash is desired, e.g., `1`, `2`, etc...\nIf the order of data is not important, random, but unique, values can be used, e.g., `c2a4567`.",
+              "example": "1"
             },
             "required": true
           }
@@ -1170,14 +1100,15 @@
             }
           }
         },
-        "description": "Deletes a stash and its data",
+        "description": "Deletes a stash and all its data",
         "parameters": [
           {
             "name": "stashID",
             "in": "path",
             "schema": {
               "type": "string",
-              "description": "ID of the stash to delete, e.g., `20240215-job32`",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+              "description": "ID of the stash, e.g., `20240215-job32`",
               "example": "20240215-job32"
             },
             "required": true
