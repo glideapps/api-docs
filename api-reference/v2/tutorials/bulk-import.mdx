@@ -32,10 +32,6 @@ To simplify the coordination, parallelization, and idempotency of the upload pro
 
 For instance, a daily import process might have a stash ID of `20240501-import`. Or, an import specific to a single customer might have a stash ID of `customer-381-import`.
 
-<Warning>
-  The stashID must be in the format of a UUID, e.g., `"123e4567-e89b-12d3-a456-426655440000"`. This is a known issue and will be fixed in a future release.
-</Warning>
-
 You are responsible for ensuring that the stash ID is unique and stable across associated uploads.
 
 ## Upload Data
