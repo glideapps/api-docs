@@ -1,0 +1,45 @@
+name: Add helpful comment to PRs
+
+env:
+    changelog_path: "api-reference/v2/resources/changelog.mdx"
+
+on:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+        branches:
+            - main
+        paths:
+            - "openapi/*.json"
+            - "api-reference/**.mdx"
+            - "mint.json"
+
+jobs:
+    add-comment:
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: read
+
+        steps:
+          - id: changed-files
+            uses: tj-actions/changed-files@v45
+            with:
+                files: |
+                    ${{ env.changelog_path }}
+
+          - uses: mshick/add-pr-comment@v2
+            if: steps.changed-files.outputs.any_changed != 'true'
+            with:
+                message: |
+                    It looks like you've made changes to the API docs! :raised_hands:
+                    :black_square_button: Update the changelog in `${{ env.changelog_path }}` - [:pencil2: Edit file](https://github.com/${{ github.repository }}/edit/${{ github.head_ref }}/${{ env.changelog_path }}) | [:bulb: Open Copilot workspace](https://copilot-workspace.githubnext.com/${{ github.repository }}/pull/${{ github.event.number }}?task=Update%20changelog)
+                    :point_right: You may want to [preview the changes in a Codespace](https://codespaces.new/${{ github.repository }}/pull/${{ github.event.number }}?quickstart=1)
+
+          - uses: mshick/add-pr-comment@v2
+            if: steps.changed-files.outputs.any_changed == 'true'
+            with:
+                message: |
+                    It looks like you've made changes to the API docs! :raised_hands:
+                    :ballot_box_with_check: The changelog has been updated :tada:
+                    :point_right: You may want to [preview the changes in a Codespace](https://codespaces.new/${{ github.repository }}/pull/${{ github.event.number }}?quickstart=1)
