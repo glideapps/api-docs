@@ -3,7 +3,9 @@ title: Delete Stash
 openapi: delete /stashes/{stashID}
 ---
 
-If you no longer need a stash, you can delete it. This will remove the stash and all the data it contains. Stashes are automatically deleted within 48 hours of creation.
+If you no longer need a stash, you can delete it. This will remove the stash and all the data it contains.
+
+<Note>Even if you do not call this endpoint, all stashes are automatically deleted within 48 hours after they are created.</Note>
 
 <Tip>
   To understand what stashing is and how to use it to work with large datasets, please see our [introduction to stashing](/api-reference/v2/stashing/introduction).
