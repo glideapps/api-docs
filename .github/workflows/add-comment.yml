@@ -19,7 +19,7 @@ jobs:
     add-comment:
         runs-on: ubuntu-latest
         permissions:
-            pull-requests: read
+            pull-requests: write
 
         steps:
           - id: changed-files
