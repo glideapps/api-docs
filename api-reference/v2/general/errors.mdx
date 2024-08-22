@@ -16,7 +16,7 @@ All error responses will follow the following format with a top-level `error` ob
 }
 ```
 
-## Invalid Auth Token
+### Invalid Auth Token
 
 Using an auth token that does not exist or is incorrect will result in a `404` response status.
 
@@ -34,3 +34,22 @@ curl --request GET \
   }
 }
 ```
+
+### Invalid Stash ID or Serial
+
+Using a stash ID or serial that does not [meet the requirements](../stashing/introduction#stash-ids-and-serials) will result in a `400` response status.
+
+```bash
+curl --request PUT \
+  --url https://api.glideapps.com/stashes/-INVALID-/1 \
+  --header 'Authorization: Bearer VALID-API-KEY'
+```
+
+```json
+{
+  "error": {
+    "type": "request_validation_error",
+    "message": "Invalid request params: Stash ID must be 256 characters max, alphanumeric with dashes and underscores, no leading dash or underscore"
+  }
+}
+  ```
