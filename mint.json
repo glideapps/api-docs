@@ -43,7 +43,7 @@
       "group": "Stashing",
       "pages": [
         "api-reference/v2/stashing/introduction",
-        "api-reference/v2/stashing/post-stashes-serial",
+        "api-reference/v2/stashing/put-stashes-serial",
         "api-reference/v2/stashing/delete-stash"
       ]
     },
