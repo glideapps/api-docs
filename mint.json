@@ -31,6 +31,45 @@
       ]
     },
     {
+      "group": "Apps",
+      "pages": [
+        "api-reference/v2/apps/get-app",
+        "api-reference/v2/apps/list-apps",
+        "api-reference/v2/apps/create-app",
+        "api-reference/v2/apps/transfer-app"
+      ]
+    },
+    {
+      "group": "Components",
+      "pages": [
+        "api-reference/v2/components/get-component",
+        "api-reference/v2/components/list-components",
+        "api-reference/v2/components/create-component",
+        "api-reference/v2/components/update-component"
+      ]
+    },
+    {
+      "group": "Computations",
+      "pages": [
+        "api-reference/v2/computations/create-computation"
+      ]
+    },
+    {
+      "group": "Screens",
+      "pages": [
+        "api-reference/v2/screens/list-screens",
+        "api-reference/v2/screens/create-screen"
+      ]
+    },
+    {
+      "group": "Stashing",
+      "pages": [
+        "api-reference/v2/stashing/introduction",
+        "api-reference/v2/stashing/post-stashes-serial",
+        "api-reference/v2/stashing/delete-stash"
+      ]
+    },
+    {
       "group": "Tables",
       "pages": [
         "api-reference/v2/tables/get-tables",
@@ -40,11 +79,16 @@
       ]
     },
     {
-      "group": "Stashing",
+      "group": "Teams",
       "pages": [
-        "api-reference/v2/stashing/introduction",
-        "api-reference/v2/stashing/post-stashes-serial",
-        "api-reference/v2/stashing/delete-stash"
+        "api-reference/v2/teams/get-team",
+        "api-reference/v2/teams/list-teams"
+      ]
+    },
+    {
+      "group": "Workflows",
+      "pages": [
+        "api-reference/v2/workflows/get-workflows"
       ]
     },
     {

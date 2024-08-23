@@ -1,0 +1,28 @@
+---
+title: Create Computation
+openapi: post /computations
+---
+
+Create a new computation.
+
+Tables can further reference computations in the column schema:
+
+```json
+  "schema": {
+    "columns": [
+      {
+        "id": "invoiceDate",
+        "displayName": "Invoice Date",
+        "type": {
+          "kind": "computation",
+          "id": "abc123"
+        }
+      },
+      {
+        "id": "totalAmount",
+        "displayName": "Total",
+        "type": "number"
+      },
+    ]
+  },
+```
