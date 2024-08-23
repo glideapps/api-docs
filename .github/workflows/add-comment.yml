@@ -33,7 +33,7 @@ jobs:
             with:
                 message: |
                     It looks like you've made changes to the API docs! :raised_hands:
-                    :black_square_button: Update the changelog in `${{ env.changelog_path }}` - [:pencil2: Edit file](https://github.com/${{ github.repository }}/edit/${{ github.head_ref }}/${{ env.changelog_path }}) | [:bulb: Open Copilot workspace](https://copilot-workspace.githubnext.com/${{ github.repository }}/pull/${{ github.event.number }}?task=Update%20changelog)
+                    :black_square_button: Update the changelog in `${{ env.changelog_path }}` - [:pencil2: Edit file](https://github.com/${{ github.repository }}/edit/${{ github.head_ref }}/${{ env.changelog_path }}) | [:bulb: Draft with AI](https://update-api-docs-changelog.glide.page/?pr=${{ github.event.number }})
                     :point_right: You may want to [preview the changes in a Codespace](https://codespaces.new/${{ github.repository }}/pull/${{ github.event.number }}?quickstart=1)
 
           - uses: mshick/add-pr-comment@v2
