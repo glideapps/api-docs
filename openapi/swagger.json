@@ -102,7 +102,7 @@
       },
       "post": {
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -724,7 +724,7 @@
     "/tables/{tableID}/rows": {
       "post": {
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {

@@ -1,12 +1,18 @@
+---
 title: Glide API Changelog
 sidebarTitle: Changelog
 ---
 
-### August 22, 2024
+### August 28, 2024
 
 - Users should now use the PUT method instead of POST for `/stashes/{stashID}/{serial}` to set the content of a chunk in a stash.
 - Clarified that if a chunk is uploaded with an existing serial, its data will be overwritten.
 - Documented the new format requirements for `stashID` and `serial`.
+
+### August 23, 2024
+
+- The `POST /tables` endpoint now returns HTTP status 201 on success instead of 200.
+- The `POST /tables/{tableID}/rows` endpoint now returns HTTP status 201 on success instead of 200.
 
 ### August 2, 2024
 
