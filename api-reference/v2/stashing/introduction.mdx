@@ -3,11 +3,11 @@ title: Introduction
 description: Stashing large datasets for use with the Glide API
 ---
 
-When working with large datasets it is necessary to break it into smaller chunks for performance and reliability. We call this process "stashing".
+When using large datasets with the Glide API, it may be necessary to break them into smaller chunks for performance and reliability. We call this process "stashing."
 
 ## What is Stashing?
 
-Stashing is the process by which a large dataset is broken into smaller subsets for uploading to Glide. Each subset is uploaded to Glide independently (either sequentially or in parallel) to form the complete dataset.
+Stashing is the process by which a large dataset is broken into smaller chunks for uploading to Glide. Each chunk is uploaded to Glide independently (either sequentially or in parallel) to form the complete dataset.
 
 Once all data has been uploaded to the stash, the stash can then be referenced in other API calls to refer to the full dataset. This eliminates the need to include the entire dataset in the request itself, which may not be feasible due to its size.
 
@@ -15,22 +15,22 @@ Once all data has been uploaded to the stash, the stash can then be referenced i
 
 You should use stashing when:
 
-* You have a large dataset that you want to upload to Glide. Anything larger than 5mb should be broken up into smaller subsets and stashed.
+* You have a large dataset that you want to upload to Glide. Anything larger than 5mb should be broken up into smaller chunks and stashed.
 * You want to perform an atomic operation using a large dataset. For example, you may want to perform an import of data into an existing table but don't want users to see the intermediate state of the import or incremental updates while they're using their application.
 
-## Core Concepts
+## Stash IDs and Serials
 
-The main components of a stash are its ID and the individual chunked data subsets which are identified by a serial. Both the id and serial are values you define.
+The main components of a stash are its ID and the individual chunked data subsets, which are identified by serials. Both the ID and serial are values you define.
 
-The stash ID is a unique identifier for the stash that you define from the relevant information of your domain. This is often a combination of temporal information and a domain identifier. For instance: `20240215-job32` or `2024-07-05T15:17:50Z-customer93ak`.
+The **stash ID** is a unique identifier for the stash that you define. You might use information that's relevant to your domain, such as `20240215-job32` or `2024-07-05T15-17-50Z_customer93ak`, a UUID, or any other unique identifier.
 
-Each subset of data that is uploaded to the stash is identified by a serial. If the order of each data subset is important to the overall datset, you should use the serial to represent the order of loading (e.g., `1`, `2`, etc...).
+Each chunk of data that is uploaded to the stash is identified by a unique **serial**. The sort order of the serials indicates the order of the chunks in the overall datset. If all serials can be parsed as integers, numerical sort order is used, otherwise sorting is done lexicographically according to each character's Unicode code point value. If the order of data chunks in the stash is important, using integers as serials (e.g., `1`, `2`, etc...) is recommended.
 
-If the order of each data subset is not important, then you can use a random serial for each subset like a UUID: `123e4567-e89b-12d3-a456-426655440000`. The only requirement is that the serial must be unique for each subset.
+<Note>The maximum length for both stash IDs and serials is 256 characters. They may only contain letters, numbers, hyphens, and underscores, and must start with a letter or number.</Note>
 
 ## Referencing a Stash
 
-Once a stash, and all its parts, has been uploaded you can use the stash ID in other API calls to refer to the full dataset instead of including the entire dataset itself. Think of it as a reference to all the data in the stash.
+Once all chunks have been uploaded to a stash, you can use the stash ID in place of passing the full dataset inline to other Glide API calls. Think of it as a reference to all the data in the stash.
 
 For instance, instead of including all the row data in a request to create a table, you can instead reference the stash ID:
 
