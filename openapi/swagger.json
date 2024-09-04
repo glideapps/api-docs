@@ -271,8 +271,7 @@
                                     "number",
                                     "boolean",
                                     "uri",
-                                    "dateTime",
-                                    "json"
+                                    "dateTime"
                                   ]
                                 },
                                 {
@@ -285,8 +284,7 @@
                                         "number",
                                         "boolean",
                                         "uri",
-                                        "dateTime",
-                                        "json"
+                                        "dateTime"
                                       ]
                                     }
                                   },
@@ -600,8 +598,7 @@
                                     "number",
                                     "boolean",
                                     "uri",
-                                    "dateTime",
-                                    "json"
+                                    "dateTime"
                                   ]
                                 },
                                 {
@@ -614,8 +611,7 @@
                                         "number",
                                         "boolean",
                                         "uri",
-                                        "dateTime",
-                                        "json"
+                                        "dateTime"
                                       ]
                                     }
                                   },
