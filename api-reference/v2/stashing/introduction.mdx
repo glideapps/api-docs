@@ -13,9 +13,9 @@ Once all data has been uploaded to the stash, the stash can then be referenced i
 
 ## When to Use Stashing
 
-You should use stashing when:
+You should use stashing when both of the following conditions are met:
 
-* You have a large dataset that you want to upload to Glide. Anything larger than 5mb should be broken up into smaller chunks and stashed.
+* You have a large dataset that you want to upload to Glide. Anything larger than [15MB](/api-reference/v2/general/limits) should be broken up into smaller chunks and stashed.
 * You want to perform an atomic operation using a large dataset. For example, you may want to perform an import of data into an existing table but don't want users to see the intermediate state of the import or incremental updates while they're using their application.
 
 ## Stash IDs and Serials

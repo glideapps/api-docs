@@ -36,25 +36,25 @@ You are responsible for ensuring that the stash ID is unique and stable across a
 
 ## Upload Data
 
-Once you have a stable stash ID, you can use the [stash data endpoint](/api-reference/v2/stashing/post-stashes-serial) to upload the data in stages.
+Once you have a stable stash ID, you can use the [stash data endpoint](/api-reference/v2/stashing/put-stashes-serial) to upload the data in chunks.
 
-Upload stages can be run in parallel to speed up the upload of large dataset, just be sure to use the same stash ID across uploads to ensure the final data set is complete.
+Chunks can be sent in parallel to speed up the upload of large datasets. Use the same stash ID across uploads to ensure the final data set is complete, and use the serial to control the order of the chunks within the stash.
 
-As an example, the following [stash](/api-reference/v2/stashing/post-stashes-serial) requests will create a final dataset consisting of the two rows identified by the stash ID `20240501-import`.
+As an example, the following [stash](/api-reference/v2/stashing/put-stashes-serial) requests will create a final dataset consisting of the two rows identified by the stash ID `20240501-import`. The trailing parameters of `1` and `2` in the request path are the serial IDs. The data in serial `1` will come first in the stash, and the data in serial `2` will come second, even if the requests are processed in a different order.
 
 <Tabs>
-    <Tab title="POST /stashes/20240501-import/1">
+    <Tab title="PUT /stashes/20240501-import/1">
         ```json
         [
             {
                 "Name": "Alex",
                 "Age": 30,
                 "Birthday": "2024-07-03T10:24:08.285Z"
-            }
+            },
         ]
         ```
     </Tab>
-    <Tab title="POST /stashes/20240501-import/2">
+    <Tab title="PUT /stashes/20240501-import/2">
         ```json
         [
             {
@@ -67,7 +67,7 @@ As an example, the following [stash](/api-reference/v2/stashing/post-stashes-ser
     </Tab>
 </Tabs>
 
-<Note>The trailing parameters of `1` and `2` in the request path are the serial IDs, which distinguish and order the two uploads within the stash.</Note>
+<Note>The above is just an example. In practice, you should include more than one row per stash chunk, and if your complete dataset is only 2 rows, you do not need to use stashing at all. See [Limits](/api-reference/v2/general/limits) for guidance.</Note>
 
 ## Finalize Import
 
