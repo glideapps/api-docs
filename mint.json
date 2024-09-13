@@ -27,7 +27,8 @@
       "pages": [
         "api-reference/v2/general/introduction",
         "api-reference/v2/general/authentication",
-        "api-reference/v2/general/errors"
+        "api-reference/v2/general/errors",
+        "api-reference/v2/general/limits"
       ]
     },
     {

@@ -1,0 +1,19 @@
+---
+title: Limits
+description: 'Rate and operational limits for the Glide API'
+---
+
+## Payload Limits
+
+You should not send more than 15MB of data in a single request. If you need to work with more data, use [stashing](/api-reference/v2/stashing/introduction) to upload the data in 15MB chunks.
+
+## Row Limits
+
+Even when using stashing, there are limits to the number of rows you can work with in a single request. These limits are approximate and depend on the size of the rows in your dataset.
+
+
+| Endpoint                                                      | Row Limit  |
+|---------------------------------------------------------------|------------|
+| [Create Table](/api-reference/v2/tables/post-tables)          | 8m         |
+| [Overwrite Table](/api-reference/v2/tables/put-tables)        | 8m         |
+| [Add Rows to Table](/api-reference/v2/tables/post-table-rows) | 250k       |
