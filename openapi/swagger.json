@@ -735,10 +735,24 @@
                 ],
                 "additionalProperties": false
               }
+            },
+            "text/csv": {
+              "schema": {
+                "type": "string",
+                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
+              }
+            },
+            "text/tab-separated-values": {
+              "schema": {
+                "type": "string",
+                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
+              }
             }
           }
         },
-        "description": "Overwrites a Big Table with new schema and/or data"
+        "description": "Replaces the schema and/or data of a Big Table"
       }
     },
     "/tables/{tableID}/rows": {
@@ -958,6 +972,20 @@
                   }
                 ]
               }
+            },
+            "text/csv": {
+              "schema": {
+                "type": "string",
+                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
+              }
+            },
+            "text/tab-separated-values": {
+              "schema": {
+                "type": "string",
+                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
+              }
             }
           }
         },
@@ -1061,6 +1089,20 @@
                     "amountPaid": 20
                   }
                 ]
+              }
+            },
+            "text/csv": {
+              "schema": {
+                "type": "string",
+                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
+              }
+            },
+            "text/tab-separated-values": {
+              "schema": {
+                "type": "string",
+                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data.",
+                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
               }
             }
           }
