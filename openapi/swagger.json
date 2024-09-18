@@ -5,7 +5,30 @@
     "version": ""
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
+        "example": [
+          {
+            "fullName": "Alex Bard",
+            "invoiceDate": "2024-07-29T14:04:15.561Z",
+            "totalAmount": 34.5,
+            "amountPaid": 0
+          },
+          {
+            "fullName": "Alicia Hines",
+            "invoiceDate": "2023-06-15T10:30:00.000Z",
+            "totalAmount": 50.75,
+            "amountPaid": 20
+          }
+        ]
+      }
+    },
     "responses": {},
     "parameters": {},
     "examples": {},
@@ -321,7 +344,7 @@
                           "columns"
                         ],
                         "additionalProperties": false,
-                        "description": "The schema of the table as a collection of column definitions",
+                        "description": "The schema of the table as a collection of column definitions If this is not provided, the schema will be inferred from the data.",
                         "example": {
                           "columns": [
                             {
@@ -350,26 +373,7 @@
                       "rows": {
                         "anyOf": [
                           {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            },
-                            "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                            "example": [
-                              {
-                                "fullName": "Alex Bard",
-                                "invoiceDate": "2024-07-29T14:04:15.561Z",
-                                "totalAmount": 34.5,
-                                "amountPaid": 0
-                              },
-                              {
-                                "fullName": "Alicia Hines",
-                                "invoiceDate": "2023-06-15T10:30:00.000Z",
-                                "totalAmount": 50.75,
-                                "amountPaid": 20
-                              }
-                            ]
+                            "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
                           },
                           {
                             "type": "object",
@@ -392,52 +396,12 @@
                     },
                     "required": [
                       "name",
-                      "schema",
                       "rows"
                     ],
                     "additionalProperties": false
                   },
                   {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": {}
-                        },
-                        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                        "example": [
-                          {
-                            "fullName": "Alex Bard",
-                            "invoiceDate": "2024-07-29T14:04:15.561Z",
-                            "totalAmount": 34.5,
-                            "amountPaid": 0
-                          },
-                          {
-                            "fullName": "Alicia Hines",
-                            "invoiceDate": "2023-06-15T10:30:00.000Z",
-                            "totalAmount": 50.75,
-                            "amountPaid": 20
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "$stashID": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
-                            "description": "ID of the stash, e.g., `20240215-job32`",
-                            "example": "20240215-job32"
-                          }
-                        },
-                        "required": [
-                          "$stashID"
-                        ],
-                        "additionalProperties": false,
-                        "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
                   }
                 ]
               }
@@ -737,26 +701,7 @@
                       "rows": {
                         "anyOf": [
                           {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "additionalProperties": {}
-                            },
-                            "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                            "example": [
-                              {
-                                "fullName": "Alex Bard",
-                                "invoiceDate": "2024-07-29T14:04:15.561Z",
-                                "totalAmount": 34.5,
-                                "amountPaid": 0
-                              },
-                              {
-                                "fullName": "Alicia Hines",
-                                "invoiceDate": "2023-06-15T10:30:00.000Z",
-                                "totalAmount": 50.75,
-                                "amountPaid": 20
-                              }
-                            ]
+                            "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
                           },
                           {
                             "type": "object",
@@ -778,52 +723,12 @@
                       }
                     },
                     "required": [
-                      "schema",
                       "rows"
                     ],
                     "additionalProperties": false
                   },
                   {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": {}
-                        },
-                        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                        "example": [
-                          {
-                            "fullName": "Alex Bard",
-                            "invoiceDate": "2024-07-29T14:04:15.561Z",
-                            "totalAmount": 34.5,
-                            "amountPaid": 0
-                          },
-                          {
-                            "fullName": "Alicia Hines",
-                            "invoiceDate": "2023-06-15T10:30:00.000Z",
-                            "totalAmount": 50.75,
-                            "amountPaid": 20
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "$stashID": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
-                            "description": "ID of the stash, e.g., `20240215-job32`",
-                            "example": "20240215-job32"
-                          }
-                        },
-                        "required": [
-                          "$stashID"
-                        ],
-                        "additionalProperties": false,
-                        "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
                   }
                 ]
               }
