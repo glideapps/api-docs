@@ -5,6 +5,8 @@ openapi: post /tables
 
 Create a new Big Table, define its structure, and (optionally) populate it with data.
 
+When using a CSV or TSV request body, the name of the table must be passed as a query parameter and the schema of the table is inferred from the content. Alternatively, the CSV/TSV content may be [stashed](/api-reference/v2/stashing/introduction), and then the schema and name may be passed in the regular JSON payload.
+
 ## Examples
 
 <AccordionGroup>
