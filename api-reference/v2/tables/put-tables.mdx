@@ -5,6 +5,8 @@ openapi: put /tables/{tableID}
 
 Overwrite an existing Big Table by clearing all rows and adding new data. You can also update the table schema.
 
+When using a CSV or TSV request body, you cannot pass a schema. The current schema will be used. If you need to update the schema, use the `onSchemaError=updateSchema` query parameter, or [stash](/api-reference/v2/stashing/introduction) the CSV/TSV data and pass a JSON request body.
+
 <Warning>
 This is a destructive operation that cannot be undone.
 </Warning>
