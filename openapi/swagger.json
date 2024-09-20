@@ -328,7 +328,7 @@
                                       "additionalProperties": false
                                     }
                                   ],
-                                  "description": "The type of the column"
+                                  "description": "The type of the column."
                                 }
                               },
                               "required": [
@@ -337,14 +337,14 @@
                               ],
                               "additionalProperties": false
                             },
-                            "description": "A collection of column definitions, in the order that they are to be displayed in the table"
+                            "description": "A collection of column definitions, in the order that they are to be displayed in the table."
                           }
                         },
                         "required": [
                           "columns"
                         ],
                         "additionalProperties": false,
-                        "description": "The schema of the table as a collection of column definitions If this is not provided, the schema will be inferred from the data.",
+                        "description": "The schema of the table as a collection of column definitions. If this is not provided, the schema will be inferred from the data.",
                         "example": {
                           "columns": [
                             {
@@ -389,7 +389,7 @@
                               "$stashID"
                             ],
                             "additionalProperties": false,
-                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                           }
                         ]
                       }
@@ -656,7 +656,7 @@
                                       "additionalProperties": false
                                     }
                                   ],
-                                  "description": "The type of the column"
+                                  "description": "The type of the column."
                                 }
                               },
                               "required": [
@@ -665,14 +665,14 @@
                               ],
                               "additionalProperties": false
                             },
-                            "description": "A collection of column definitions, in the order that they are to be displayed in the table"
+                            "description": "A collection of column definitions, in the order that they are to be displayed in the table."
                           }
                         },
                         "required": [
                           "columns"
                         ],
                         "additionalProperties": false,
-                        "description": "The schema of the table as a collection of column definitions",
+                        "description": "The schema of the table as a collection of column definitions.",
                         "example": {
                           "columns": [
                             {
@@ -717,7 +717,7 @@
                               "$stashID"
                             ],
                             "additionalProperties": false,
-                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                           }
                         ]
                       }
@@ -965,7 +965,7 @@
                       "$stashID"
                     ],
                     "additionalProperties": false,
-                    "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                    "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                   }
                 ]
               }
