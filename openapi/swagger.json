@@ -6,7 +6,7 @@
   },
   "components": {
     "schemas": {
-      "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```": {
+      "A_collection_of_row_objects": {
         "type": "array",
         "items": {
           "type": "object",
@@ -373,7 +373,7 @@
                       "rows": {
                         "anyOf": [
                           {
-                            "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
+                            "$ref": "#/components/schemas/A_collection_of_row_objects"
                           },
                           {
                             "type": "object",
@@ -401,23 +401,9 @@
                     "additionalProperties": false
                   },
                   {
-                    "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
+                    "$ref": "#/components/schemas/A_collection_of_row_objects"
                   }
                 ]
-              }
-            },
-            "text/csv": {
-              "schema": {
-                "type": "string",
-                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data. The schema will be inferred from the data. The name of the table must be passed in the query parameter `name`.",
-                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
-              }
-            },
-            "text/tab-separated-values": {
-              "schema": {
-                "type": "string",
-                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data. The schema will be inferred from the data. The name of the table must be passed in the query parameter `name`.",
-                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
               }
             },
             "text/csv": {
@@ -715,7 +701,7 @@
                       "rows": {
                         "anyOf": [
                           {
-                            "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
+                            "$ref": "#/components/schemas/A_collection_of_row_objects"
                           },
                           {
                             "type": "object",
@@ -742,23 +728,9 @@
                     "additionalProperties": false
                   },
                   {
-                    "$ref": "#/components/schemas/A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```"
+                    "$ref": "#/components/schemas/A_collection_of_row_objects"
                   }
                 ]
-              }
-            },
-            "text/csv": {
-              "schema": {
-                "type": "string",
-                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data.",
-                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
-              }
-            },
-            "text/tab-separated-values": {
-              "schema": {
-                "type": "string",
-                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data.",
-                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
               }
             },
             "text/csv": {
