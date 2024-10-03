@@ -5,7 +5,30 @@
     "version": ""
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "A_collection_of_row_objects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
+        "example": [
+          {
+            "fullName": "Alex Bard",
+            "invoiceDate": "2024-07-29T14:04:15.561Z",
+            "totalAmount": 34.5,
+            "amountPaid": 0
+          },
+          {
+            "fullName": "Alicia Hines",
+            "invoiceDate": "2023-06-15T10:30:00.000Z",
+            "totalAmount": 50.75,
+            "amountPaid": 20
+          }
+        ]
+      }
+    },
     "responses": {},
     "parameters": {},
     "examples": {},
@@ -246,47 +269,36 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the table, e.g., `Invoices`",
-                    "example": "Invoices"
-                  },
-                  "schema": {
+                "anyOf": [
+                  {
                     "type": "object",
                     "properties": {
-                      "columns": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string",
-                              "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
-                              "example": "fullName"
-                            },
-                            "displayName": {
-                              "type": "string",
-                              "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
-                              "example": "Full Name"
-                            },
-                            "type": {
-                              "anyOf": [
-                                {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the table, e.g., `Invoices`",
+                        "example": "Invoices"
+                      },
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "columns": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
                                   "type": "string",
-                                  "enum": [
-                                    "string",
-                                    "number",
-                                    "boolean",
-                                    "uri",
-                                    "dateTime"
-                                  ]
+                                  "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
+                                  "example": "fullName"
                                 },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "kind": {
+                                "displayName": {
+                                  "type": "string",
+                                  "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
+                                  "example": "Full Name"
+                                },
+                                "type": {
+                                  "anyOf": [
+                                    {
                                       "type": "string",
                                       "enum": [
                                         "string",
@@ -295,105 +307,103 @@
                                         "uri",
                                         "dateTime"
                                       ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "kind": {
+                                          "type": "string",
+                                          "enum": [
+                                            "string",
+                                            "number",
+                                            "boolean",
+                                            "uri",
+                                            "dateTime"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "kind"
+                                      ],
+                                      "additionalProperties": false
                                     }
-                                  },
-                                  "required": [
-                                    "kind"
                                   ],
-                                  "additionalProperties": false
+                                  "description": "The type of the column."
                                 }
+                              },
+                              "required": [
+                                "id",
+                                "type"
                               ],
-                              "description": "The type of the column"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "type"
-                          ],
-                          "additionalProperties": false
-                        },
-                        "description": "A collection of column definitions, in the order that they are to be displayed in the table"
-                      }
-                    },
-                    "required": [
-                      "columns"
-                    ],
-                    "additionalProperties": false,
-                    "description": "The schema of the table as a collection of column definitions",
-                    "example": {
-                      "columns": [
-                        {
-                          "id": "fullName",
-                          "displayName": "Full Name",
-                          "type": "string"
-                        },
-                        {
-                          "id": "invoiceDate",
-                          "displayName": "Invoice Date",
-                          "type": "dateTime"
-                        },
-                        {
-                          "id": "totalAmount",
-                          "displayName": "Total",
-                          "type": "number"
-                        },
-                        {
-                          "id": "amountPaid",
-                          "displayName": "Paid",
-                          "type": "number"
-                        }
-                      ]
-                    }
-                  },
-                  "rows": {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": {}
-                        },
-                        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                        "example": [
-                          {
-                            "fullName": "Alex Bard",
-                            "invoiceDate": "2024-07-29T14:04:15.561Z",
-                            "totalAmount": 34.5,
-                            "amountPaid": 0
-                          },
-                          {
-                            "fullName": "Alicia Hines",
-                            "invoiceDate": "2023-06-15T10:30:00.000Z",
-                            "totalAmount": 50.75,
-                            "amountPaid": 20
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "$stashID": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
-                            "description": "ID of the stash, e.g., `20240215-job32`",
-                            "example": "20240215-job32"
+                              "additionalProperties": false
+                            },
+                            "description": "A collection of column definitions, in the order that they are to be displayed in the table."
                           }
                         },
                         "required": [
-                          "$stashID"
+                          "columns"
                         ],
                         "additionalProperties": false,
-                        "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                        "description": "The schema of the table as a collection of column definitions. If this is not provided, the schema will be inferred from the data.",
+                        "example": {
+                          "columns": [
+                            {
+                              "id": "fullName",
+                              "displayName": "Full Name",
+                              "type": "string"
+                            },
+                            {
+                              "id": "invoiceDate",
+                              "displayName": "Invoice Date",
+                              "type": "dateTime"
+                            },
+                            {
+                              "id": "totalAmount",
+                              "displayName": "Total",
+                              "type": "number"
+                            },
+                            {
+                              "id": "amountPaid",
+                              "displayName": "Paid",
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      },
+                      "rows": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/A_collection_of_row_objects"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "$stashID": {
+                                "type": "string",
+                                "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                                "description": "ID of the stash, e.g., `20240215-job32`",
+                                "example": "20240215-job32"
+                              }
+                            },
+                            "required": [
+                              "$stashID"
+                            ],
+                            "additionalProperties": false,
+                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
+                          }
+                        ]
                       }
-                    ]
+                    },
+                    "required": [
+                      "name",
+                      "rows"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "$ref": "#/components/schemas/A_collection_of_row_objects"
                   }
-                },
-                "required": [
-                  "name",
-                  "schema",
-                  "rows"
-                ],
-                "additionalProperties": false
+                ]
               }
             },
             "text/csv": {
@@ -592,42 +602,31 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "schema": {
+                "anyOf": [
+                  {
                     "type": "object",
                     "properties": {
-                      "columns": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string",
-                              "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
-                              "example": "fullName"
-                            },
-                            "displayName": {
-                              "type": "string",
-                              "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
-                              "example": "Full Name"
-                            },
-                            "type": {
-                              "anyOf": [
-                                {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "columns": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
                                   "type": "string",
-                                  "enum": [
-                                    "string",
-                                    "number",
-                                    "boolean",
-                                    "uri",
-                                    "dateTime"
-                                  ]
+                                  "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
+                                  "example": "fullName"
                                 },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "kind": {
+                                "displayName": {
+                                  "type": "string",
+                                  "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
+                                  "example": "Full Name"
+                                },
+                                "type": {
+                                  "anyOf": [
+                                    {
                                       "type": "string",
                                       "enum": [
                                         "string",
@@ -636,104 +635,102 @@
                                         "uri",
                                         "dateTime"
                                       ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "kind": {
+                                          "type": "string",
+                                          "enum": [
+                                            "string",
+                                            "number",
+                                            "boolean",
+                                            "uri",
+                                            "dateTime"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "kind"
+                                      ],
+                                      "additionalProperties": false
                                     }
-                                  },
-                                  "required": [
-                                    "kind"
                                   ],
-                                  "additionalProperties": false
+                                  "description": "The type of the column."
                                 }
+                              },
+                              "required": [
+                                "id",
+                                "type"
                               ],
-                              "description": "The type of the column"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "type"
-                          ],
-                          "additionalProperties": false
-                        },
-                        "description": "A collection of column definitions, in the order that they are to be displayed in the table"
-                      }
-                    },
-                    "required": [
-                      "columns"
-                    ],
-                    "additionalProperties": false,
-                    "description": "The schema of the table as a collection of column definitions",
-                    "example": {
-                      "columns": [
-                        {
-                          "id": "fullName",
-                          "displayName": "Full Name",
-                          "type": "string"
-                        },
-                        {
-                          "id": "invoiceDate",
-                          "displayName": "Invoice Date",
-                          "type": "dateTime"
-                        },
-                        {
-                          "id": "totalAmount",
-                          "displayName": "Total",
-                          "type": "number"
-                        },
-                        {
-                          "id": "amountPaid",
-                          "displayName": "Paid",
-                          "type": "number"
-                        }
-                      ]
-                    }
-                  },
-                  "rows": {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": {}
-                        },
-                        "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                        "example": [
-                          {
-                            "fullName": "Alex Bard",
-                            "invoiceDate": "2024-07-29T14:04:15.561Z",
-                            "totalAmount": 34.5,
-                            "amountPaid": 0
-                          },
-                          {
-                            "fullName": "Alicia Hines",
-                            "invoiceDate": "2023-06-15T10:30:00.000Z",
-                            "totalAmount": 50.75,
-                            "amountPaid": 20
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "$stashID": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
-                            "description": "ID of the stash, e.g., `20240215-job32`",
-                            "example": "20240215-job32"
+                              "additionalProperties": false
+                            },
+                            "description": "A collection of column definitions, in the order that they are to be displayed in the table."
                           }
                         },
                         "required": [
-                          "$stashID"
+                          "columns"
                         ],
                         "additionalProperties": false,
-                        "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                        "description": "The schema of the table as a collection of column definitions.",
+                        "example": {
+                          "columns": [
+                            {
+                              "id": "fullName",
+                              "displayName": "Full Name",
+                              "type": "string"
+                            },
+                            {
+                              "id": "invoiceDate",
+                              "displayName": "Invoice Date",
+                              "type": "dateTime"
+                            },
+                            {
+                              "id": "totalAmount",
+                              "displayName": "Total",
+                              "type": "number"
+                            },
+                            {
+                              "id": "amountPaid",
+                              "displayName": "Paid",
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      },
+                      "rows": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/A_collection_of_row_objects"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "$stashID": {
+                                "type": "string",
+                                "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                                "description": "ID of the stash, e.g., `20240215-job32`",
+                                "example": "20240215-job32"
+                              }
+                            },
+                            "required": [
+                              "$stashID"
+                            ],
+                            "additionalProperties": false,
+                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
+                          }
+                        ]
                       }
-                    ]
+                    },
+                    "required": [
+                      "rows"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "$ref": "#/components/schemas/A_collection_of_row_objects"
                   }
-                },
-                "required": [
-                  "schema",
-                  "rows"
-                ],
-                "additionalProperties": false
+                ]
               }
             },
             "text/csv": {
@@ -968,7 +965,7 @@
                       "$stashID"
                     ],
                     "additionalProperties": false,
-                    "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used"
+                    "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                   }
                 ]
               }
