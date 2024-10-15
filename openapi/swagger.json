@@ -250,6 +250,18 @@
             "required": false
           },
           {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "glide-table",
+                "glide-big-table"
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "onSchemaError",
             "in": "query",
             "schema": {
@@ -278,6 +290,13 @@
                         "description": "Name of the table, e.g., `Invoices`",
                         "example": "Invoices"
                       },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "glide-table",
+                          "glide-big-table"
+                        ]
+                      },
                       "schema": {
                         "type": "object",
                         "properties": {
@@ -302,30 +321,90 @@
                                       "type": "string",
                                       "enum": [
                                         "string",
+                                        "uri",
+                                        "imageURI",
+                                        "audioURI",
+                                        "markdown",
+                                        "phoneNumber",
+                                        "emailAddress",
+                                        "emoji",
+                                        "date",
+                                        "time",
+                                        "dateTime",
+                                        "duration",
                                         "number",
                                         "boolean",
-                                        "uri",
-                                        "dateTime"
+                                        "json"
                                       ]
                                     },
                                     {
-                                      "type": "object",
-                                      "properties": {
-                                        "kind": {
-                                          "type": "string",
-                                          "enum": [
-                                            "string",
-                                            "number",
-                                            "boolean",
-                                            "uri",
-                                            "dateTime"
-                                          ]
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "array"
+                                              ]
+                                            },
+                                            "items": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "items"
+                                          ],
+                                          "additionalProperties": false
                                         }
-                                      },
-                                      "required": [
-                                        "kind"
-                                      ],
-                                      "additionalProperties": false
+                                      ]
                                     }
                                   ],
                                   "description": "The type of the column."
@@ -422,7 +501,7 @@
             }
           }
         },
-        "description": "Creates a new Big Table"
+        "description": "Creates a new table"
       }
     },
     "/tables/{tableID}": {
@@ -630,30 +709,90 @@
                                       "type": "string",
                                       "enum": [
                                         "string",
+                                        "uri",
+                                        "imageURI",
+                                        "audioURI",
+                                        "markdown",
+                                        "phoneNumber",
+                                        "emailAddress",
+                                        "emoji",
+                                        "date",
+                                        "time",
+                                        "dateTime",
+                                        "duration",
                                         "number",
                                         "boolean",
-                                        "uri",
-                                        "dateTime"
+                                        "json"
                                       ]
                                     },
                                     {
-                                      "type": "object",
-                                      "properties": {
-                                        "kind": {
-                                          "type": "string",
-                                          "enum": [
-                                            "string",
-                                            "number",
-                                            "boolean",
-                                            "uri",
-                                            "dateTime"
-                                          ]
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "array"
+                                              ]
+                                            },
+                                            "items": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "items"
+                                          ],
+                                          "additionalProperties": false
                                         }
-                                      },
-                                      "required": [
-                                        "kind"
-                                      ],
-                                      "additionalProperties": false
+                                      ]
                                     }
                                   ],
                                   "description": "The type of the column."
