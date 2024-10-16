@@ -302,30 +302,90 @@
                                       "type": "string",
                                       "enum": [
                                         "string",
+                                        "uri",
+                                        "imageURI",
+                                        "audioURI",
+                                        "markdown",
+                                        "phoneNumber",
+                                        "emailAddress",
+                                        "emoji",
+                                        "date",
+                                        "time",
+                                        "dateTime",
+                                        "duration",
                                         "number",
                                         "boolean",
-                                        "uri",
-                                        "dateTime"
+                                        "json"
                                       ]
                                     },
                                     {
-                                      "type": "object",
-                                      "properties": {
-                                        "kind": {
-                                          "type": "string",
-                                          "enum": [
-                                            "string",
-                                            "number",
-                                            "boolean",
-                                            "uri",
-                                            "dateTime"
-                                          ]
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "array"
+                                              ]
+                                            },
+                                            "items": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "items"
+                                          ],
+                                          "additionalProperties": false
                                         }
-                                      },
-                                      "required": [
-                                        "kind"
-                                      ],
-                                      "additionalProperties": false
+                                      ]
                                     }
                                   ],
                                   "description": "The type of the column."
@@ -630,30 +690,90 @@
                                       "type": "string",
                                       "enum": [
                                         "string",
+                                        "uri",
+                                        "imageURI",
+                                        "audioURI",
+                                        "markdown",
+                                        "phoneNumber",
+                                        "emailAddress",
+                                        "emoji",
+                                        "date",
+                                        "time",
+                                        "dateTime",
+                                        "duration",
                                         "number",
                                         "boolean",
-                                        "uri",
-                                        "dateTime"
+                                        "json"
                                       ]
                                     },
                                     {
-                                      "type": "object",
-                                      "properties": {
-                                        "kind": {
-                                          "type": "string",
-                                          "enum": [
-                                            "string",
-                                            "number",
-                                            "boolean",
-                                            "uri",
-                                            "dateTime"
-                                          ]
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "array"
+                                              ]
+                                            },
+                                            "items": {
+                                              "type": "string",
+                                              "enum": [
+                                                "string",
+                                                "uri",
+                                                "imageURI",
+                                                "audioURI",
+                                                "markdown",
+                                                "phoneNumber",
+                                                "emailAddress",
+                                                "emoji",
+                                                "date",
+                                                "time",
+                                                "dateTime",
+                                                "duration",
+                                                "number",
+                                                "boolean",
+                                                "json"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "items"
+                                          ],
+                                          "additionalProperties": false
                                         }
-                                      },
-                                      "required": [
-                                        "kind"
-                                      ],
-                                      "additionalProperties": false
+                                      ]
                                     }
                                   ],
                                   "description": "The type of the column."
