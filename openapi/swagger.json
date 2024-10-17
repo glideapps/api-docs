@@ -314,8 +314,7 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean",
-                                        "json"
+                                        "boolean"
                                       ]
                                     },
                                     {
@@ -339,8 +338,7 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean",
-                                                "json"
+                                                "boolean"
                                               ]
                                             }
                                           },
@@ -359,24 +357,32 @@
                                               ]
                                             },
                                             "items": {
-                                              "type": "string",
-                                              "enum": [
-                                                "string",
-                                                "uri",
-                                                "imageURI",
-                                                "audioURI",
-                                                "markdown",
-                                                "phoneNumber",
-                                                "emailAddress",
-                                                "emoji",
-                                                "date",
-                                                "time",
-                                                "dateTime",
-                                                "duration",
-                                                "number",
-                                                "boolean",
-                                                "json"
-                                              ]
+                                              "type": "object",
+                                              "properties": {
+                                                "kind": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "string",
+                                                    "uri",
+                                                    "imageURI",
+                                                    "audioURI",
+                                                    "markdown",
+                                                    "phoneNumber",
+                                                    "emailAddress",
+                                                    "emoji",
+                                                    "date",
+                                                    "time",
+                                                    "dateTime",
+                                                    "duration",
+                                                    "number",
+                                                    "boolean"
+                                                  ]
+                                                }
+                                              },
+                                              "required": [
+                                                "kind"
+                                              ],
+                                              "additionalProperties": false
                                             }
                                           },
                                           "required": [
@@ -702,8 +708,7 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean",
-                                        "json"
+                                        "boolean"
                                       ]
                                     },
                                     {
@@ -727,8 +732,7 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean",
-                                                "json"
+                                                "boolean"
                                               ]
                                             }
                                           },
@@ -747,24 +751,32 @@
                                               ]
                                             },
                                             "items": {
-                                              "type": "string",
-                                              "enum": [
-                                                "string",
-                                                "uri",
-                                                "imageURI",
-                                                "audioURI",
-                                                "markdown",
-                                                "phoneNumber",
-                                                "emailAddress",
-                                                "emoji",
-                                                "date",
-                                                "time",
-                                                "dateTime",
-                                                "duration",
-                                                "number",
-                                                "boolean",
-                                                "json"
-                                              ]
+                                              "type": "object",
+                                              "properties": {
+                                                "kind": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "string",
+                                                    "uri",
+                                                    "imageURI",
+                                                    "audioURI",
+                                                    "markdown",
+                                                    "phoneNumber",
+                                                    "emailAddress",
+                                                    "emoji",
+                                                    "date",
+                                                    "time",
+                                                    "dateTime",
+                                                    "duration",
+                                                    "number",
+                                                    "boolean"
+                                                  ]
+                                                }
+                                              },
+                                              "required": [
+                                                "kind"
+                                              ],
+                                              "additionalProperties": false
                                             }
                                           },
                                           "required": [
