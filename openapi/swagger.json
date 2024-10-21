@@ -488,7 +488,7 @@
             }
           }
         },
-        "description": "Creates a new table"
+        "description": "Creates a new Big Table"
       }
     },
     "/tables/{tableID}": {
