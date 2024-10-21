@@ -250,18 +250,6 @@
             "required": false
           },
           {
-            "name": "kind",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "glide-table",
-                "glide-big-table"
-              ]
-            },
-            "required": false
-          },
-          {
             "name": "onSchemaError",
             "in": "query",
             "schema": {
@@ -289,13 +277,6 @@
                         "type": "string",
                         "description": "Name of the table, e.g., `Invoices`",
                         "example": "Invoices"
-                      },
-                      "kind": {
-                        "type": "string",
-                        "enum": [
-                          "glide-table",
-                          "glide-big-table"
-                        ]
                       },
                       "schema": {
                         "type": "object",
