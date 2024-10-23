@@ -37,7 +37,8 @@
         "api-reference/v2/tables/get-tables",
         "api-reference/v2/tables/post-tables",
         "api-reference/v2/tables/post-table-rows",
-        "api-reference/v2/tables/put-tables"
+        "api-reference/v2/tables/put-tables",
+        "api-reference/v2/tables/patch-table-row"
       ]
     },
     {
