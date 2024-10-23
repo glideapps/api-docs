@@ -10,7 +10,14 @@
         "type": "array",
         "items": {
           "type": "object",
-          "additionalProperties": {}
+          "additionalProperties": {},
+          "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+          "example": {
+            "fullName": "Alex Bard",
+            "invoiceDate": "2024-07-29T14:04:15.561Z",
+            "totalAmount": 34.5,
+            "amountPaid": 0
+          }
         },
         "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
         "example": [
@@ -143,7 +150,9 @@
                         "rowIDs": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "ID of the row, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                            "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
                           },
                           "description": "Row IDs of added rows, e.g., \n\n```json\n[\n\t\"2a1bad8b-cf7c-44437-b8c1-e3782df6\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
                           "example": [
@@ -507,7 +516,9 @@
                         "rowIDs": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "ID of the row, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                            "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
                           },
                           "description": "Row IDs of added rows, e.g., \n\n```json\n[\n\t\"2a1bad8b-cf7c-44437-b8c1-e3782df6\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
                           "example": [
@@ -900,7 +911,9 @@
                         "rowIDs": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "ID of the row, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                            "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
                           },
                           "description": "Row IDs of added rows, e.g., \n\n```json\n[\n\t\"2a1bad8b-cf7c-44437-b8c1-e3782df6\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
                           "example": [
@@ -1065,7 +1078,14 @@
                     "type": "array",
                     "items": {
                       "type": "object",
-                      "additionalProperties": {}
+                      "additionalProperties": {},
+                      "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+                      "example": {
+                        "fullName": "Alex Bard",
+                        "invoiceDate": "2024-07-29T14:04:15.561Z",
+                        "totalAmount": 34.5,
+                        "amountPaid": 0
+                      }
                     },
                     "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
                     "example": [
@@ -1119,6 +1139,186 @@
           }
         },
         "description": "Adds rows to a Big Table"
+      }
+    },
+    "/tables/{tableID}/rows/{rowID}": {
+      "patch": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false,
+                  "description": "A 200 HTTP response code indicates that the row was successfully updated."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "row_not_found",
+                            "table_not_found",
+                            "table_not_big_table"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "column_has_invalid_value",
+                            "column_id_reserved",
+                            "column_id_not_found"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tableID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+              "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+            },
+            "required": true
+          },
+          {
+            "name": "rowID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the row, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+              "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+            },
+            "required": true
+          },
+          {
+            "name": "onSchemaError",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "abort",
+                "dropColumns",
+                "updateSchema"
+              ],
+              "description": "The action to take when the passed data does not match the table schema:\n\n- `abort`: Abort the entire operation and return an error.\n- `dropColumns`: Ignore the data that caused the error, and do not import those columns in the affected rows.\n- `updateSchema`: Update the schema as needed to add any missing columns or widen the data types of existing columns, and then import the data from them.",
+              "example": "updateSchema"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+                "example": {
+                  "fullName": "Alex Bard",
+                  "invoiceDate": "2024-07-29T14:04:15.561Z",
+                  "totalAmount": 34.5,
+                  "amountPaid": 0
+                }
+              }
+            }
+          }
+        },
+        "description": "Updates a row in a Big Table"
       }
     },
     "/stashes/{stashID}/{serial}": {
@@ -1201,7 +1401,14 @@
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "additionalProperties": {}
+                  "additionalProperties": {},
+                  "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+                  "example": {
+                    "fullName": "Alex Bard",
+                    "invoiceDate": "2024-07-29T14:04:15.561Z",
+                    "totalAmount": 34.5,
+                    "amountPaid": 0
+                  }
                 },
                 "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
                 "example": [
