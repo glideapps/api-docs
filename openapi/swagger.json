@@ -1330,7 +1330,7 @@
                   "type": "object",
                   "properties": {},
                   "additionalProperties": false,
-                  "description": "A 200 HTTP response code indicates that the row was successfully deleted."
+                  "description": "A 200 HTTP response code indicates that the row does not exist or was successfully deleted."
                 }
               }
             }
