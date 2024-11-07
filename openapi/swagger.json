@@ -996,6 +996,7 @@
             "in": "query",
             "schema": {
               "type": "number",
+              "exclusiveMinimum": 0,
               "default": 250,
               "description": "Maximum number of rows to return in a single response. No more than this number of rows will be returned, however fewer rows may be returned, even if there are more rows to fetch. If there are more rows, the response will include a continuation token that can be used to fetch the next set of rows."
             },
