@@ -896,6 +896,124 @@
       }
     },
     "/tables/{tableID}/rows": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": {},
+                        "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+                        "example": {
+                          "fullName": "Alex Bard",
+                          "invoiceDate": "2024-07-29T14:04:15.561Z",
+                          "totalAmount": 34.5,
+                          "amountPaid": 0
+                        }
+                      },
+                      "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
+                      "example": [
+                        {
+                          "fullName": "Alex Bard",
+                          "invoiceDate": "2024-07-29T14:04:15.561Z",
+                          "totalAmount": 34.5,
+                          "amountPaid": 0
+                        },
+                        {
+                          "fullName": "Alicia Hines",
+                          "invoiceDate": "2023-06-15T10:30:00.000Z",
+                          "totalAmount": 50.75,
+                          "amountPaid": 20
+                        }
+                      ]
+                    },
+                    "continuation": {
+                      "type": "string",
+                      "description": "A continuation token for fetching the next set of rows. If this is not provided, this response contains the last set of rows."
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tableID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+              "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+            },
+            "required": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "default": 250,
+              "description": "Maximum number of rows to return in a single response. No more than this number of rows will be returned, however fewer rows may be returned, even if there are more rows to fetch. If there are more rows, the response will include a continuation token that can be used to fetch the next set of rows."
+            },
+            "required": false
+          },
+          {
+            "name": "continuation",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "A continuation token from a previous response. If provided, the next set of rows will be returned. If not provided, the first set of rows will be returned."
+            },
+            "required": false
+          }
+        ],
+        "description": "Gets rows from a Big Table"
+      },
       "post": {
         "responses": {
           "201": {
