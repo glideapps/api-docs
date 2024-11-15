@@ -650,6 +650,15 @@
         },
         "parameters": [
           {
+            "name": "If-Match",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "description": "ETag of the current table version. If provided, the request will fail if the table has been updated since this version."
+            },
+            "required": false
+          },
+          {
             "name": "tableID",
             "in": "path",
             "schema": {
