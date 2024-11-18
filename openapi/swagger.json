@@ -650,7 +650,7 @@
         },
         "parameters": [
           {
-            "name": "If-Match",
+            "name": "if-match",
             "in": "header",
             "schema": {
               "type": "string",
