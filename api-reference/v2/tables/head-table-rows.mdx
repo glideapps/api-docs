@@ -1,0 +1,12 @@
+---
+title: Get Rows Version
+openapi: head /tables/{tableID}/rows
+---
+
+Returns an `ETag` header containing the current version of the table data.
+
+This endpoint may be polled to detect changes in the table's data.
+
+<Tip>
+  To learn more about versioning and how to detect changes, please see our guide on [data versioning](/api-reference/v2/tables/versioning).
+</Tip>

@@ -3,18 +3,27 @@ title: Overwrite Table
 openapi: put /tables/{tableID}
 ---
 
-Overwrite an existing Big Table by clearing all rows and adding new data. You can also update the table schema.
+Overwrite an existing Big Table by clearing all rows and adding new data.
 
-When using a CSV or TSV request body, you cannot pass a schema. The current schema will be used. If you need to update the schema, use the `onSchemaError=updateSchema` query parameter, or [stash](/api-reference/v2/stashing/introduction) the CSV/TSV data and pass a JSON request body.
+### Updating the Schema
 
-<Warning>
-This is a destructive operation that cannot be undone.
-</Warning>
+You can optionally update the table schema at the same time by providing a new schema in the JSON request body. If you do not provide a schema, the existing schema will be used.
+
+When using a CSV or TSV request body, you cannot pass a schema. If you need to update the schema, use the `onSchemaError=updateSchema` query parameter, or [stash](/api-reference/v2/stashing/introduction) the CSV/TSV data and pass a JSON request body referencing the stash ID.
 
 ## Examples
 
 <AccordionGroup>
-  <Accordion title="Overwrite Table w/ Row Data">
+  <Accordion title="Clear table data">
+    To clear all rows from a table, send a PUT request with an empty array in the `rows` field:
+
+    ```json
+    {
+        "rows": []
+    }
+    ```
+  </Accordion>
+  <Accordion title="Reset table data">
     If you want to reset a table's data with a small number of rows, you can do so by providing the data inline in the `rows` field (being sure that row object structure matches the table schema):
 
     ```json
@@ -30,15 +39,34 @@ This is a destructive operation that cannot be undone.
     However, this is only appropriate for relatively small initial datasets (around a few hundred rows or less, depending on schema complexity). If you need to work with a larger dataset you should utilize stashing.
   </Accordion>
 
-  <Accordion title="Overwrite Table from Stash">
+  <Accordion title="Reset table data from Stash">
     [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/post-stashes-serial). 
 
     Then, to reset a table's data from the stash, use the `$stashID` reference in the `rows` field instead of providing the data inline:
 
     ```json
     {
-        "$stashID": "20240215-job32"
+        "rows": { "$stashID": "20240215-job32" }
     }
     ```
+  </Accordion>
+  <Accordion title="Batch update table rows">
+  This endpoint can be combined with the [Get Rows](/api-reference/v2/tables/get-table-rows) endpoint and [stashing](/api-reference/v2/stashing/introduction) to fetch the current table data, modify it, and then overwrite the table with the updated data:
+
+  1. Call the [Get Rows](/api-reference/v2/tables/get-table-rows) endpoint to fetch the current table data. Pass a reasonably high `limit` query parameter because you want to fetch all rows in as few requests as possible.
+  2. Modify the data as desired, and then stash the modified rows using the [Stash Data](/api-reference/v2/stashing/put-stashes-serial) endpoint.
+  3. If a `continuation` was returned in step 1, repeat steps 1-3, passing the `continuation` query parameter to [Get Rows](/api-reference/v2/tables/get-table-rows) until all rows have been fetched, modified, and stashed.
+  4. Finally, call this endpoint with same stash ID used in step 2. This will overwrite the table with the updated data:
+
+    ```json
+    {
+        "rows": { "$stashID": "20240215-job32" }
+    }
+    ```
+    <Warning>
+    **Risk of Data Loss**
+
+    We strongly recommend you use the `If-Match` header to ensure the table is not modified between steps 1 and 4. See the [Data Versioning](/api-reference/v2/tables/versioning) guide for more information.
+    </Warning>
   </Accordion>
 </AccordionGroup>
