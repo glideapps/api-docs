@@ -988,7 +988,7 @@
             "required": true
           }
         ],
-        "description": "Gets information about a Big Table's data"
+        "description": "Gets information about the data in a Big Table"
       },
       "get": {
         "responses": {
