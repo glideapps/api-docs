@@ -908,6 +908,18 @@
     "/tables/{tableID}/rows": {
       "head": {
         "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "description": "The current version of the table"
+                },
+                "required": true
+              }
+            }
+          },
           "400": {
             "description": "",
             "content": {
