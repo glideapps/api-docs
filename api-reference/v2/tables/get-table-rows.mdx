@@ -2,3 +2,7 @@
 title: Get Rows
 openapi: get /tables/{tableID}/rows
 ---
+
+You can use the `limit` query parameter to specify the maximum number of rows to return for each request.
+
+Whether or not you supply a `limit`, you may need to make multiple requests to retrieve all the rows in the table. If there are more rows to fetch, the `continuation` field will be set in the response. To retrieve the next page of rows, make another request with the `continuation` as a query parameter.

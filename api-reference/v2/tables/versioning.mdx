@@ -1,0 +1,21 @@
+---
+title: Data Versioning
+description: Detect updates and prevent data loss with versioning
+---
+
+Every Glide Big Table has a version number that increases whenever its data changes. Additionally, each row in a Big Table keeps track of the table version when it was last modified. This information can be used to detect changes to data and prevent mid-air collisions that can result in data loss.
+
+## Getting the Current Version
+
+Most API endpoints that work with Big Tables return the current version of the table in the `ETag` response header.
+
+If you only want to get the current version of a table without performing any other operation, use the [Get Rows Version](/api-reference/v2/tables/head-table-rows) endpoint. You can poll this endpoint to detect changes to the table.
+
+## Preventing Data Loss
+
+When updating data in a Big Table, you can specify the version of the table you expect to be working with using the `If-Match` header. How this value is interpreted depends on the endpoint:
+
+- The [Overwrite Table](/api-reference/v2/tables/put-tables) endpoint rejects the request if the current table version is newer than the version specified in the `If-Match` header.
+- The [Update Row](/api-reference/v2/tables/patch-table-row) endpoint rejects the request if the row has been modified since the version specified in the `If-Match` header. The update is still allowed if another row in the table was modified since the specified version.
+
+In both cases, an HTTP `412 Precondition Failed` response is returned if the condition is not met.

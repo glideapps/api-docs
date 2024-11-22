@@ -3,6 +3,12 @@ title: Glide API Changelog
 sidebarTitle: Changelog
 ---
 
+### November 21, 2024
+
+- Introduced `HEAD /tables/{tableID}/rows` endpoint to retrieve the current version of table data via `ETag` header.
+- Added support for the `If-Match` header to the Overwrite Table and Update Row endpoints.
+- Introduced a new Data Versioning guide.
+
 ### November 11, 2024
 
 - Added `GET /tables/{tableID}/rows` endpoint to retrieve rows from a specified table with pagination.
