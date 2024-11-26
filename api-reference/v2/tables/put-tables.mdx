@@ -5,6 +5,10 @@ openapi: put /tables/{tableID}
 
 Overwrite an existing Big Table by clearing all rows and adding new data.
 
+<Warning>
+There is currently no way to supply values for user-specific columns in the API. Those columns will be cleared when using this endpoint.
+</Warning>
+
 ### Updating the Schema
 
 You can optionally update the table schema at the same time by providing a new schema in the JSON request body. If you do not provide a schema, the existing schema will be used.
