@@ -53,3 +53,42 @@ curl --request PUT \
   }
 }
   ```
+
+### Invalid Row Data
+
+When adding or updating rows in a table, if the row data does not match the table schema, the API will return a `422` response status.
+
+#### Unkown Column
+
+```json
+{
+    "error": {
+        "type": "column_id_not_found",
+        "message": "Unknown column ID 'foo'"
+    }
+}
+```
+
+#### Invalid Value for Column
+
+```json
+{
+    "error": {
+        "type": "column_has_invalid_value",
+        "message": "Invalid value for column 'foo'"
+    }
+}
+```
+
+### Row Not Found
+
+When attempting to update a row that does not exist, the API will return a `404` response status.
+
+```json
+{
+    "error": {
+        "type": "row_not_found",
+        "message": "Row with ID 'XHz6kF2XSTGi1ADDbryjqw' not found"
+    }
+}
+```

@@ -4,3 +4,5 @@ openapi: patch /tables/{tableID}/rows/{rowID}
 ---
 
 Updates an existing row in a Big Table.
+
+If a column is not included in the passed row data, it will not be updated. If a column is passed that does not exist in the table schema, or with a value that does not match the column's type, the default behavior is for no update to be made and the API call to [return an error](/api-reference/v2/general/errors#invalid-row-data). However, you can control this behavior with the `onSchemaError` query parameter.

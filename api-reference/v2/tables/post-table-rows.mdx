@@ -3,9 +3,11 @@ title: Add Rows to Table
 openapi: post /tables/{tableID}/rows
 ---
 
-Add row data to an existing Big Table.
+Add one or more rows to an existing Big Table.
 
-Row data may be passed in JSON, CSV, or TSV format.
+Row IDs for the added rows are returned in the response in the same order as the input row data is passed in the request. Row data may be passed in JSON, CSV, or TSV format.
+
+If a column is not included in the passed row data, it will be empty in the added row. If a column is passed that does not exist in the table schema, or with a value that does not match the column's type, the default behavior is for no rows to be added and the API call to [return an error](/api-reference/v2/general/errors#invalid-row-data). However, you can control this behavior with the `onSchemaError` query parameter.
 
 ## Examples
 

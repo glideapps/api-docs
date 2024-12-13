@@ -5,7 +5,11 @@ openapi: post /tables
 
 Create a new Big Table, define its structure, and (optionally) populate it with data.
 
-When using a CSV or TSV request body, the name of the table must be passed as a query parameter and the schema of the table is inferred from the content. Alternatively, the CSV/TSV content may be [stashed](/api-reference/v2/stashing/introduction), and then the schema and name may be passed in the regular JSON payload.
+Row IDs for any added rows are returned in the response in the same order as the input row data is passed in the request. Row data may be passed in JSON, CSV, or TSV format.
+
+When using a CSV or TSV request body, the name of the table must be passed as a query parameter and the schema of the table is always inferred from the content. Alternatively, the CSV/TSV content may be [stashed](/api-reference/v2/stashing/introduction), and then the schema and name may be passed in the regular JSON payload.
+
+If a schema is passed in the payload, any passed row data must match that schema. If a column is not included in the passed row data, it will be empty in the added row. If a column is passed that does not exist in the schema, or with a value that does not match the column's type, the default behavior is for the table to not be created and the API call to [return an error](/api-reference/v2/general/errors#invalid-row-data). However, you can control this behavior with the `onSchemaError` query parameter.
 
 ## Examples
 
