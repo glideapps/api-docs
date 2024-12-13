@@ -27,6 +27,8 @@ When using a CSV or TSV request body, the name of the table must be passed as a 
     }
     ```
 
+    The response will include row IDs for all created rows, returned in the same order as the input rows.
+
     However, this is only appropriate for relatively small initial datasets (around a few hundred rows or less, depending on schema complexity). If you need to work with a larger dataset you should utilize stashing.
   </Accordion>
   <Accordion title="Create Table from Stash">

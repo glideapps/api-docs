@@ -17,3 +17,5 @@ Even when using stashing, there are limits to the number of rows you can work wi
 | [Create Table](/api-reference/v2/tables/post-tables)          | 8m         |
 | [Overwrite Table](/api-reference/v2/tables/put-tables)        | 8m         |
 | [Add Rows to Table](/api-reference/v2/tables/post-table-rows) | 250k       |
+
+When adding rows to a table, the returned row IDs are guaranteed to be in the same order as the input rows provided in the request.

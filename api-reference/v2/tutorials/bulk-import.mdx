@@ -89,6 +89,8 @@ To create a table with the data of the stash ID `20240501-import` you can use th
 }
 ```
 
+The endpoint will return a list of row IDs in the same order as the rows in your stashed data, preserving the order defined by the serial numbers in your stash uploads.
+
 ### Add Rows to Table
 
 To add data to an existing table you can use the [add rows to table](/api-reference/v2/tables/post-table-rows) endpoint with the `stashID` reference of `20240501-import` instead of the actual row values.
@@ -98,6 +100,8 @@ To add data to an existing table you can use the [add rows to table](/api-refere
     "$stashID": "20240501-import"
 }
 ```
+
+The endpoint will return a list of row IDs in the same order as the rows in your stashed data, preserving the order defined by the serial numbers in your stash uploads.
 
 ### Overwrite Table
 
