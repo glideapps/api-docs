@@ -48,7 +48,7 @@ When using a CSV or TSV request body, you cannot pass a schema. If you need to u
   </Accordion>
 
   <Accordion title="Reset table data from Stash">
-    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/post-stashes-serial). 
+    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/put-stashes-serial). 
 
     Then, to reset a table's data from the stash, use the `$stashID` reference in the `rows` field instead of providing the data inline:
 

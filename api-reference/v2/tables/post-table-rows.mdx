@@ -33,7 +33,7 @@ If a column is not included in the passed row data, it will be empty in the adde
   </Accordion>
 
   <Accordion title="Add Rows from Stash">
-    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/post-stashes-serial). 
+    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/put-stashes-serial). 
 
     Then, to add all the row data in a stash to the table in a single atomic operation, use the `$stashID` reference in the `rows` field instead of providing the data inline:
 

@@ -34,7 +34,7 @@ If a schema is passed in the payload, any passed row data must match that schema
     However, this is only appropriate for relatively small initial datasets (around a few hundred rows or less, depending on schema complexity). If you need to work with a larger dataset you should utilize stashing.
   </Accordion>
   <Accordion title="Create Table from Stash">
-    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/post-stashes-serial). 
+    [Stashing](/api-reference/v2/stashing/introduction) is our process for handling the upload of large datasets. Break down your dataset into smaller, more manageable, pieces and [upload them to a single stash ID](/api-reference/v2/stashing/put-stashes-serial). 
 
     Then, to create a table from a stash, you can use the `$stashID` reference in the `rows` field instead of providing the data inline:
 
