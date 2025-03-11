@@ -5,4 +5,21 @@ openapi: get /tables
 
 Get a list of all Big Tables associated with the team of the authenticated user.
 
+## Understanding Tables in Glide
+
+Tables in Glide are the fundamental way to store, organize, and manage your application's data. They function similar to spreadsheets, with rows and columns that define your data structure. Each table consists of:
+
+- A schema that defines the structure and data types of your columns
+- Rows of data that conform to the schema
+- A unique identifier for each row
+
+Big Tables, which this endpoint specifically deals with, are Glide's most powerful and scalable data storage solution. They're designed for:
+
+- Handling large datasets efficiently
+- Supporting complex data types and relationships
+- Enabling high-performance data operations
+- Supporting bulk data operations through [stashing](/api-reference/v2/stashing/introduction)
+
+Big Tables differ from other table types in Glide (such as Google Sheets or Airtable integrations) by being native to the Glide platform and optimized for performance at scale. They're the recommended choice when building data-intensive applications or when you need programmatic access to your data through the API.
+
 <Warning>This endpoint only retrieves **Big Table** tables. No other table types will be included in the response, even though they are part of your Glide team.</Warning>

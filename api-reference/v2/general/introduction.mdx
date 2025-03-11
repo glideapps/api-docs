@@ -7,6 +7,30 @@ The Glide APIv2 is a RESTful API that allows you to programmatically interact wi
 
 <Warning>This API is currently in a public beta state. Feedback is welcome. However, please be aware that **breaking changes are expected**!</Warning>
 
+## Understanding Tables in Glide
+
+Glide uses different types of tables to store and organize data within your applications. The main types of tables include:
+
+### Big Tables
+Big Tables are Glide's native database solution, designed for handling large datasets efficiently. They offer:
+- High performance for large-scale data operations
+- Direct API access through this v2 API
+- Advanced querying capabilities
+- Built-in data type validation
+- Optimized for programmatic access
+
+### Other Table Types
+While not accessible through this API, Glide also supports:
+- Google Sheets tables
+- Excel tables
+- Airtable connections
+- CSV imports
+- Custom data source integrations
+
+<Note>
+  This v2 API exclusively works with Big Tables, making it the ideal choice when you need to programmatically manage large datasets or require high-performance data operations.
+</Note>
+
 ## Functionality
 
 This version of the Glide API **only accesses Big Table data sources**. An attempt to use this API with any other data source will return an error.
