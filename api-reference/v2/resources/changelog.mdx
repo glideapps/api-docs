@@ -3,6 +3,11 @@ title: Glide API Changelog
 sidebarTitle: Changelog
 ---
 
+### April 1, 2025
+
+- Clarified that the version supplied in the `If-Match` header is compared against the row version, not the table version, in the Update Row endpoint.
+- Added HTTP 412 Precondition Failed as a possible error for endpoints that accept an `If-Match` header.
+
 ### December 13, 2024
 
 - Clarified that endpoints return row IDs in the same order as the input rows.
