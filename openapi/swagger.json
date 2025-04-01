@@ -760,7 +760,7 @@
             "schema": {
               "type": "string",
               "pattern": "^\"[0-9]+\"$",
-              "description": "ETag of the current table version. If provided, the request will fail if the table has been updated since the given version. See [Data Versioning](/api-reference/v2/tables/data-versioning)."
+              "description": "ETag of the current table version. If provided, the request will fail if the table has been updated since the given version. See [Data Versioning](/api-reference/v2/tables/versioning)."
             },
             "required": false
           },
@@ -1775,7 +1775,7 @@
             "schema": {
               "type": "string",
               "pattern": "^\"[0-9]+\"$",
-              "description": "ETag of the current table version. If provided, the request will fail if this row has been updated since the given version. See [Data Versioning](/api-reference/v2/tables/data-versioning)."
+              "description": "ETag of the current table version. If provided, the request will fail if this row has been updated since the given version. See [Data Versioning](/api-reference/v2/tables/versioning)."
             },
             "required": false
           },
