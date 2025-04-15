@@ -1,25 +1,29 @@
 ---
-title: Glide API v2
+title: Glide API v2.0
 sidebarTitle: Introduction
 ---
 
-The Glide APIv2 is a RESTful API that allows you to programmatically interact with the Glide platform. These are the developer docs for version 2 of the API, initially released in July of 2024.
+The Glide API v2.0 is a RESTful API that allows you to programmatically interact with data on the Glide platform. These are the developer docs for version 2.0 of the API, initially released in July of 2024.
 
-<Warning>This API is currently in a public beta state. Feedback is welcome. However, please be aware that **breaking changes are expected**!</Warning>
+<Warning>This API is currently in Public Beta. **Breaking changes are expected**!</Warning>
 
 ## Functionality
-
-This version of the Glide API **only accesses Big Table data sources**. An attempt to use this API with any other data source will return an error.
+This version of the Glide API **only works with the Glide Big Tables data source**. An attempt to use this API with any other data source will return an error.
 
 ## Location
+The Glide API v2.0 is located at: `https://api.glideapps.com/`.
 
-The Glide API v2 is located at: `https://api.glideapps.com/`.
+## Pricing
+- Adding, updating, or deleting rows will use 0.01 updates per row changed
+- Getting rows will use 0.001 updates per row retrieved
+
+If you use a stash, updates will be charged only when you commit your stash. Deleting a stash will not use updates.
+
+All other calls will not use updates, such as creating tables, listing tables, or getting row versions.
 
 ## Previous Versions
-
-This Glide API v2 differs from previous versions in that it:
-
-- Is the most performant way to programatically interact with Big Tables
-- Is capable of ingesting much larger data sets through the use of [stashing](/api-reference/v2/stashing/introduction)
-- Does not require application scoping (i.e., no `appId` is required)
-- Only operates on Big Tables data sources
+This Glide API v2.0 differs from Glide API v1.0 in the following ways:
+- Only operates on Glide Big Tables data source
+- Uses fewer updates for reading, adding, editing, and deleting data
+- Capable of ingesting large data sets through the use of [stashing](/api-reference/v2/stashing/introduction)
+- Does not require scoping by Glide app (i.e., `App ID` is not required)
