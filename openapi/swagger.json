@@ -502,6 +502,12 @@
                             "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                           }
                         ]
+                      },
+                      "linkToApps": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
                       }
                     },
                     "required": [
