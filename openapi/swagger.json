@@ -6,6 +6,11 @@
   },
   "components": {
     "schemas": {
+      "ID_of_the_table__e_g____2a1": {
+        "type": "string",
+        "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+        "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+      },
       "A_collection_of_row_objects": {
         "type": "array",
         "items": {
@@ -388,6 +393,59 @@
                                           },
                                           "required": [
                                             "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "relation"
+                                              ]
+                                            },
+                                            "from": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "matchMultiple": {
+                                              "type": "boolean",
+                                              "description": "If true, the relation will match multiple rows in the target table"
+                                            },
+                                            "target": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "from",
+                                            "target"
                                           ],
                                           "additionalProperties": false
                                         },
@@ -864,6 +922,59 @@
                                           },
                                           "required": [
                                             "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "relation"
+                                              ]
+                                            },
+                                            "from": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "matchMultiple": {
+                                              "type": "boolean",
+                                              "description": "If true, the relation will match multiple rows in the target table"
+                                            },
+                                            "target": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "from",
+                                            "target"
                                           ],
                                           "additionalProperties": false
                                         },
