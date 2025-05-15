@@ -6,11 +6,6 @@
   },
   "components": {
     "schemas": {
-      "ID_of_the_table__e_g____2a1": {
-        "type": "string",
-        "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
-        "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
-      },
       "A_collection_of_row_objects": {
         "type": "array",
         "items": {
@@ -405,21 +400,8 @@
                                                 "relation"
                                               ]
                                             },
-                                            "from": {
-                                              "type": "object",
-                                              "properties": {
-                                                "tableID": {
-                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
-                                                },
-                                                "columnID": {
-                                                  "type": "string"
-                                                }
-                                              },
-                                              "required": [
-                                                "tableID",
-                                                "columnID"
-                                              ],
-                                              "additionalProperties": false
+                                            "columnID": {
+                                              "type": "string"
                                             },
                                             "matchMultiple": {
                                               "type": "boolean",
@@ -429,7 +411,9 @@
                                               "type": "object",
                                               "properties": {
                                                 "tableID": {
-                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                  "type": "string",
+                                                  "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                                                  "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
                                                 },
                                                 "columnID": {
                                                   "type": "string"
@@ -444,7 +428,7 @@
                                           },
                                           "required": [
                                             "kind",
-                                            "from",
+                                            "columnID",
                                             "target"
                                           ],
                                           "additionalProperties": false
@@ -934,21 +918,8 @@
                                                 "relation"
                                               ]
                                             },
-                                            "from": {
-                                              "type": "object",
-                                              "properties": {
-                                                "tableID": {
-                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
-                                                },
-                                                "columnID": {
-                                                  "type": "string"
-                                                }
-                                              },
-                                              "required": [
-                                                "tableID",
-                                                "columnID"
-                                              ],
-                                              "additionalProperties": false
+                                            "columnID": {
+                                              "type": "string"
                                             },
                                             "matchMultiple": {
                                               "type": "boolean",
@@ -958,7 +929,9 @@
                                               "type": "object",
                                               "properties": {
                                                 "tableID": {
-                                                  "$ref": "#/components/schemas/ID_of_the_table__e_g____2a1"
+                                                  "type": "string",
+                                                  "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                                                  "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
                                                 },
                                                 "columnID": {
                                                   "type": "string"
@@ -973,7 +946,7 @@
                                           },
                                           "required": [
                                             "kind",
-                                            "from",
+                                            "columnID",
                                             "target"
                                           ],
                                           "additionalProperties": false
