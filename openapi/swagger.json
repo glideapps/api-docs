@@ -159,6 +159,13 @@
                             "zcJWnyI8Tbam21V34K8MNA",
                             "93a19-cf7c-44437-b8c1-e9acbbb"
                           ]
+                        },
+                        "linkedAppIDs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "An array of appIDs which were successfully linked."
                         }
                       },
                       "required": [
@@ -294,6 +301,18 @@
             "required": false
           },
           {
+            "name": "appsToLink",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "An array of app IDs to link the new table to."
+            },
+            "required": false
+          },
+          {
             "name": "onSchemaError",
             "in": "query",
             "schema": {
@@ -315,92 +334,57 @@
               "schema": {
                 "anyOf": [
                   {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Name of the table, e.g., `Invoices`",
-                        "example": "Invoices"
-                      },
-                      "schema": {
+                    "anyOf": [
+                      {
                         "type": "object",
                         "properties": {
-                          "columns": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "string",
-                                  "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
-                                  "example": "fullName"
-                                },
-                                "displayName": {
-                                  "type": "string",
-                                  "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
-                                  "example": "Full Name"
-                                },
-                                "type": {
-                                  "anyOf": [
-                                    {
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the table, e.g., `Invoices`",
+                            "example": "Invoices"
+                          },
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "columns": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
                                       "type": "string",
-                                      "enum": [
-                                        "string",
-                                        "uri",
-                                        "imageURI",
-                                        "audioURI",
-                                        "markdown",
-                                        "phoneNumber",
-                                        "emailAddress",
-                                        "emoji",
-                                        "date",
-                                        "time",
-                                        "dateTime",
-                                        "duration",
-                                        "number",
-                                        "boolean"
-                                      ]
+                                      "description": "Internal ID of the column, e.g., `fullName`. This value cannot be changed once created.",
+                                      "example": "fullName"
                                     },
-                                    {
+                                    "displayName": {
+                                      "type": "string",
+                                      "description": "Human-readable display name of the column, e.g., `Full Name`. Can be modified once created.",
+                                      "example": "Full Name"
+                                    },
+                                    "type": {
                                       "anyOf": [
                                         {
-                                          "type": "object",
-                                          "properties": {
-                                            "kind": {
-                                              "type": "string",
-                                              "enum": [
-                                                "string",
-                                                "uri",
-                                                "imageURI",
-                                                "audioURI",
-                                                "markdown",
-                                                "phoneNumber",
-                                                "emailAddress",
-                                                "emoji",
-                                                "date",
-                                                "time",
-                                                "dateTime",
-                                                "duration",
-                                                "number",
-                                                "boolean"
-                                              ]
-                                            }
-                                          },
-                                          "required": [
-                                            "kind"
-                                          ],
-                                          "additionalProperties": false
+                                          "type": "string",
+                                          "enum": [
+                                            "string",
+                                            "uri",
+                                            "imageURI",
+                                            "audioURI",
+                                            "markdown",
+                                            "phoneNumber",
+                                            "emailAddress",
+                                            "emoji",
+                                            "date",
+                                            "time",
+                                            "dateTime",
+                                            "duration",
+                                            "number",
+                                            "boolean"
+                                          ]
                                         },
                                         {
-                                          "type": "object",
-                                          "properties": {
-                                            "kind": {
-                                              "type": "string",
-                                              "enum": [
-                                                "array"
-                                              ]
-                                            },
-                                            "items": {
+                                          "anyOf": [
+                                            {
                                               "type": "object",
                                               "properties": {
                                                 "kind": {
@@ -427,91 +411,149 @@
                                                 "kind"
                                               ],
                                               "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "kind": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "array"
+                                                  ]
+                                                },
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "kind": {
+                                                      "type": "string",
+                                                      "enum": [
+                                                        "string",
+                                                        "uri",
+                                                        "imageURI",
+                                                        "audioURI",
+                                                        "markdown",
+                                                        "phoneNumber",
+                                                        "emailAddress",
+                                                        "emoji",
+                                                        "date",
+                                                        "time",
+                                                        "dateTime",
+                                                        "duration",
+                                                        "number",
+                                                        "boolean"
+                                                      ]
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "kind"
+                                                  ],
+                                                  "additionalProperties": false
+                                                }
+                                              },
+                                              "required": [
+                                                "kind",
+                                                "items"
+                                              ],
+                                              "additionalProperties": false
                                             }
-                                          },
-                                          "required": [
-                                            "kind",
-                                            "items"
-                                          ],
-                                          "additionalProperties": false
+                                          ]
                                         }
-                                      ]
+                                      ],
+                                      "description": "The type of the column."
                                     }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "type"
                                   ],
-                                  "description": "The type of the column."
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "type"
-                              ],
-                              "additionalProperties": false
-                            },
-                            "description": "A collection of column definitions, in the order that they are to be displayed in the table."
-                          }
-                        },
-                        "required": [
-                          "columns"
-                        ],
-                        "additionalProperties": false,
-                        "description": "The schema of the table as a collection of column definitions. If this is not provided, the schema will be inferred from the data.",
-                        "example": {
-                          "columns": [
-                            {
-                              "id": "fullName",
-                              "displayName": "Full Name",
-                              "type": "string"
-                            },
-                            {
-                              "id": "invoiceDate",
-                              "displayName": "Invoice Date",
-                              "type": "dateTime"
-                            },
-                            {
-                              "id": "totalAmount",
-                              "displayName": "Total",
-                              "type": "number"
-                            },
-                            {
-                              "id": "amountPaid",
-                              "displayName": "Paid",
-                              "type": "number"
-                            }
-                          ]
-                        }
-                      },
-                      "rows": {
-                        "anyOf": [
-                          {
-                            "$ref": "#/components/schemas/A_collection_of_row_objects"
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "$stashID": {
-                                "type": "string",
-                                "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
-                                "description": "ID of the stash, e.g., `20240215-job32`",
-                                "example": "20240215-job32"
+                                  "additionalProperties": false
+                                },
+                                "description": "A collection of column definitions, in the order that they are to be displayed in the table."
                               }
                             },
                             "required": [
-                              "$stashID"
+                              "columns"
                             ],
                             "additionalProperties": false,
-                            "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
+                            "description": "The schema of the table as a collection of column definitions. If this is not provided, the schema will be inferred from the data.",
+                            "example": {
+                              "columns": [
+                                {
+                                  "id": "fullName",
+                                  "displayName": "Full Name",
+                                  "type": "string"
+                                },
+                                {
+                                  "id": "invoiceDate",
+                                  "displayName": "Invoice Date",
+                                  "type": "dateTime"
+                                },
+                                {
+                                  "id": "totalAmount",
+                                  "displayName": "Total",
+                                  "type": "number"
+                                },
+                                {
+                                  "id": "amountPaid",
+                                  "displayName": "Paid",
+                                  "type": "number"
+                                }
+                              ]
+                            }
+                          },
+                          "rows": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/A_collection_of_row_objects"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "$stashID": {
+                                    "type": "string",
+                                    "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,255}$",
+                                    "description": "ID of the stash, e.g., `20240215-job32`",
+                                    "example": "20240215-job32"
+                                  }
+                                },
+                                "required": [
+                                  "$stashID"
+                                ],
+                                "additionalProperties": false,
+                                "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
+                              }
+                            ]
+                          },
+                          "appsToLink": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "An array of app IDs to link the new table to."
                           }
-                        ]
+                        },
+                        "required": [
+                          "name",
+                          "rows"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "$ref": "#/components/schemas/A_collection_of_row_objects"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "fileUrl": {
+                        "type": "string"
                       }
                     },
                     "required": [
-                      "name",
-                      "rows"
+                      "fileUrl"
                     ],
                     "additionalProperties": false
-                  },
-                  {
-                    "$ref": "#/components/schemas/A_collection_of_row_objects"
                   }
                 ]
               }
