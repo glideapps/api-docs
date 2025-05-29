@@ -140,39 +140,79 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "tableID": {
-                          "type": "string",
-                          "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
-                          "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "tableID": {
+                              "type": "string",
+                              "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                              "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                            },
+                            "rowIDs": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "description": "ID of the row, e.g., `zcJWnyI8Tbam21V34K8MNA`",
+                                "example": "zcJWnyI8Tbam21V34K8MNA"
+                              },
+                              "description": "Row IDs of added rows, returned in the same order as the input rows, e.g., \n\n```json\n[\n\t\"zcJWnyI8Tbam21V34K8MNA\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
+                              "example": [
+                                "zcJWnyI8Tbam21V34K8MNA",
+                                "93a19-cf7c-44437-b8c1-e9acbbb"
+                              ]
+                            },
+                            "linkedAppIDs": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "An array of appIDs which were successfully linked."
+                            }
+                          },
+                          "required": [
+                            "rowIDs"
+                          ],
+                          "additionalProperties": false
                         },
-                        "rowIDs": {
+                        {
                           "type": "array",
                           "items": {
-                            "type": "string",
-                            "description": "ID of the row, e.g., `zcJWnyI8Tbam21V34K8MNA`",
-                            "example": "zcJWnyI8Tbam21V34K8MNA"
-                          },
-                          "description": "Row IDs of added rows, returned in the same order as the input rows, e.g., \n\n```json\n[\n\t\"zcJWnyI8Tbam21V34K8MNA\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
-                          "example": [
-                            "zcJWnyI8Tbam21V34K8MNA",
-                            "93a19-cf7c-44437-b8c1-e9acbbb"
-                          ]
-                        },
-                        "linkedAppIDs": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          },
-                          "description": "An array of appIDs which were successfully linked."
+                            "type": "object",
+                            "properties": {
+                              "tableID": {
+                                "type": "string",
+                                "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                                "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                              },
+                              "rowIDs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "description": "ID of the row, e.g., `zcJWnyI8Tbam21V34K8MNA`",
+                                  "example": "zcJWnyI8Tbam21V34K8MNA"
+                                },
+                                "description": "Row IDs of added rows, returned in the same order as the input rows, e.g., \n\n```json\n[\n\t\"zcJWnyI8Tbam21V34K8MNA\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
+                                "example": [
+                                  "zcJWnyI8Tbam21V34K8MNA",
+                                  "93a19-cf7c-44437-b8c1-e9acbbb"
+                                ]
+                              },
+                              "linkedAppIDs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "An array of appIDs which were successfully linked."
+                              }
+                            },
+                            "required": [
+                              "rowIDs"
+                            ],
+                            "additionalProperties": false
+                          }
                         }
-                      },
-                      "required": [
-                        "tableID",
-                        "rowIDs"
-                      ],
-                      "additionalProperties": false
+                      ]
                     }
                   },
                   "required": [
