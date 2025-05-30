@@ -291,6 +291,11 @@
         },
         "parameters": [
           {
+            "name": "x-glide-ai-agent",
+            "in": "header",
+            "required": false
+          },
+          {
             "name": "name",
             "in": "query",
             "schema": {
