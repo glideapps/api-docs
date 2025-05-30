@@ -416,6 +416,48 @@
                                             "kind": {
                                               "type": "string",
                                               "enum": [
+                                                "relation"
+                                              ]
+                                            },
+                                            "columnID": {
+                                              "type": "string"
+                                            },
+                                            "matchMultiple": {
+                                              "type": "boolean",
+                                              "description": "If true, the relation will match multiple rows in the target table"
+                                            },
+                                            "target": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "type": "string",
+                                                  "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                                                  "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "columnID",
+                                            "target"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
                                                 "array"
                                               ]
                                             },
@@ -890,6 +932,48 @@
                                           },
                                           "required": [
                                             "kind"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "kind": {
+                                              "type": "string",
+                                              "enum": [
+                                                "relation"
+                                              ]
+                                            },
+                                            "columnID": {
+                                              "type": "string"
+                                            },
+                                            "matchMultiple": {
+                                              "type": "boolean",
+                                              "description": "If true, the relation will match multiple rows in the target table"
+                                            },
+                                            "target": {
+                                              "type": "object",
+                                              "properties": {
+                                                "tableID": {
+                                                  "type": "string",
+                                                  "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                                                  "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                                                },
+                                                "columnID": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "tableID",
+                                                "columnID"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "required": [
+                                            "kind",
+                                            "columnID",
+                                            "target"
                                           ],
                                           "additionalProperties": false
                                         },
