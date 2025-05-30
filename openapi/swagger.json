@@ -586,12 +586,14 @@
                   {
                     "type": "object",
                     "properties": {
-                      "fileUrl": {
-                        "type": "string"
+                      "$url": {
+                        "type": "string",
+                        "description": "URL to a CSV, TSV, or Excel file",
+                        "example": "https://example.com/file.xlsx"
                       }
                     },
                     "required": [
-                      "fileUrl"
+                      "$url"
                     ],
                     "additionalProperties": false
                   }
