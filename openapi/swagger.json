@@ -159,6 +159,13 @@
                             "zcJWnyI8Tbam21V34K8MNA",
                             "93a19-cf7c-44437-b8c1-e9acbbb"
                           ]
+                        },
+                        "linkedAppIDs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "An array of appIDs which were successfully linked."
                         }
                       },
                       "required": [
@@ -290,6 +297,18 @@
               "type": "string",
               "description": "Name of the table. Required when the name is not passed in the request body. It is an error to pass a name in both this query parameter and the request body.",
               "example": "Invoices"
+            },
+            "required": false
+          },
+          {
+            "name": "appsToLink",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "An array of app IDs to link the new table to."
             },
             "required": false
           },
@@ -502,6 +521,13 @@
                             "description": "A single reference to a [stash](/api-reference/v2/stashing) whose data should be used."
                           }
                         ]
+                      },
+                      "appsToLink": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "An array of app IDs to link the new table to."
                       }
                     },
                     "required": [
