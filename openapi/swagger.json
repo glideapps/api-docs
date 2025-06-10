@@ -561,7 +561,7 @@
         "description": "Creates a new Big Table"
       }
     },
-    "/tables/importFromURL": {
+    "/tables/import": {
       "post": {
         "responses": {
           "201": {
@@ -759,7 +759,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "url": {
+                  "fromUrl": {
                     "type": "string",
                     "format": "uri",
                     "description": "The url of the table to fetch from. Required when the name is not passed in the request body. It is an error to pass a name in both this query parameter and the request body."
@@ -773,7 +773,7 @@
                   }
                 },
                 "required": [
-                  "url"
+                  "fromUrl"
                 ],
                 "additionalProperties": false
               }
