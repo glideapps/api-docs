@@ -561,6 +561,242 @@
         "description": "Creates a new Big Table"
       }
     },
+    "/tables/import": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "tableID": {
+                            "type": "string",
+                            "description": "ID of the table, e.g., `2a1bad8b-cf7c-44437-b8c1-e3782df6`",
+                            "example": "2a1bad8b-cf7c-44437-b8c1-e3782df6"
+                          },
+                          "rowIDs": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "ID of the row, e.g., `zcJWnyI8Tbam21V34K8MNA`",
+                              "example": "zcJWnyI8Tbam21V34K8MNA"
+                            },
+                            "description": "Row IDs of added rows, returned in the same order as the input rows, e.g., \n\n```json\n[\n\t\"zcJWnyI8Tbam21V34K8MNA\",\n\t\"93a19-cf7c-44437-b8c1-e9acbbb\"\n]\n```",
+                            "example": [
+                              "zcJWnyI8Tbam21V34K8MNA",
+                              "93a19-cf7c-44437-b8c1-e9acbbb"
+                            ]
+                          },
+                          "linkedAppIDs": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "An array of appIDs which were successfully linked."
+                          }
+                        },
+                        "required": [
+                          "tableID",
+                          "rowIDs"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "payment_required"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "column_id_reserved",
+                            "column_id_not_unique",
+                            "column_has_invalid_value",
+                            "column_id_not_found"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "appsToLink",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "An array of app IDs to link the new table to."
+            },
+            "required": false
+          },
+          {
+            "name": "onSchemaError",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "abort",
+                "dropColumns",
+                "updateSchema"
+              ],
+              "description": "The action to take when the passed data does not match the table schema:\n\n- `abort`: Abort the entire operation and return an error.\n- `dropColumns`: Ignore the data that caused the error, and do not import those columns in the affected rows.\n- `updateSchema`: Update the schema as needed to add any missing columns or widen the data types of existing columns, and then import the data from them.",
+              "example": "updateSchema"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fromUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The url of the table to fetch from. Required when the name is not passed in the request body. It is an error to pass a name in both this query parameter and the request body."
+                  },
+                  "appsToLink": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "An array of app IDs to link the new table to."
+                  }
+                },
+                "required": [
+                  "fromUrl"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "text/csv": {
+              "schema": {
+                "type": "string",
+                "description": "A CSV string. The first line is column IDs, and each subsequent line is a row of data. The schema will be inferred from the data. The name of the table must be passed in the query parameter `name`.",
+                "example": "Name,Age,Birthday\nAlice,25,2024-08-29T09:46:16.722Z\nBob,30,2020-01-15T09:00:16.722Z"
+              }
+            },
+            "text/tab-separated-values": {
+              "schema": {
+                "type": "string",
+                "description": "A TSV string. The first line is column IDs, and each subsequent line is a row of data. The schema will be inferred from the data. The name of the table must be passed in the query parameter `name`.",
+                "example": "Name\tAge\tBirthday\nAlice\t25\t2024-08-29T09:46:16.722Z\nBob\t30\t2020-01-15T09:00:16.722Z"
+              }
+            }
+          }
+        },
+        "description": "Creates a new Big Table from a URL"
+      }
+    },
     "/tables/{tableID}": {
       "put": {
         "responses": {
