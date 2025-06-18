@@ -1848,33 +1848,15 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": {},
-                        "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
-                        "example": {
-                          "fullName": "Alex Bard",
-                          "invoiceDate": "2024-07-29T14:04:15.561Z",
-                          "totalAmount": 34.5,
-                          "amountPaid": 0
-                        }
-                      },
-                      "description": "A collection of row objects conforming to the schema of the table where keys are the column IDs and values are the column values:\n\n```json\n[\n\t{\n\t\t\"fullName\": \"Alex Bard\",\n\t\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\t\"totalAmount\": 34.50,\n\t\t\"amountPaid\": 0\n\t},\n\t{\n\t\t\"fullName\": \"Alicia Hines\",\n\t\t\"invoiceDate\": \"2023-06-15T10:30:00.000Z\",\n\t\t\"totalAmount\": 50.75,\n\t\t\"amountPaid\": 20\n\t}\n]\n```",
-                      "example": [
-                        {
-                          "fullName": "Alex Bard",
-                          "invoiceDate": "2024-07-29T14:04:15.561Z",
-                          "totalAmount": 34.5,
-                          "amountPaid": 0
-                        },
-                        {
-                          "fullName": "Alicia Hines",
-                          "invoiceDate": "2023-06-15T10:30:00.000Z",
-                          "totalAmount": 50.75,
-                          "amountPaid": 20
-                        }
-                      ]
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "A row object conforming to the schema of the table, where keys are the column IDs and values are the column values:\n\n```json\n{\n\t\"fullName\": \"Alex Bard\",\n\t\"invoiceDate\": \"2024-07-29T14:04:15.561Z\",\n\t\"totalAmount\": 34.50,\n\t\"amountPaid\": 0\n}\n```",
+                      "example": {
+                        "fullName": "Alex Bard",
+                        "invoiceDate": "2024-07-29T14:04:15.561Z",
+                        "totalAmount": 34.5,
+                        "amountPaid": 0
+                      }
                     }
                   },
                   "required": [

@@ -37,6 +37,7 @@
         "api-reference/v2/tables/versioning",
         "api-reference/v2/tables/get-tables",
         "api-reference/v2/tables/get-table-rows",
+        "api-reference/v2/tables/get-table-row",
         "api-reference/v2/tables/head-table-rows",
         "api-reference/v2/tables/post-tables",
         "api-reference/v2/tables/post-table-rows",
