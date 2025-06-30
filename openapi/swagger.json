@@ -759,6 +759,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "displayName": {
+                    "type": "string",
+                    "description": "Name of the table, e.g., `Invoices`",
+                    "example": "Invoices"
+                  },
                   "fromUrl": {
                     "type": "string",
                     "format": "uri",
