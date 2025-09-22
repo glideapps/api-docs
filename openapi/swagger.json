@@ -333,8 +333,7 @@
               "enum": [
                 "true",
                 "false"
-              ],
-              "description": "Allow asynchronous processing, which will return a job ID."
+              ]
             },
             "required": false
           },
@@ -781,8 +780,7 @@
               "enum": [
                 "true",
                 "false"
-              ],
-              "description": "Allow asynchronous processing, which will return a job ID."
+              ]
             },
             "required": false
           },
@@ -1118,8 +1116,7 @@
               "enum": [
                 "true",
                 "false"
-              ],
-              "description": "Allow asynchronous processing, which will return a job ID."
+              ]
             },
             "required": false
           },
