@@ -200,7 +200,7 @@
                         },
                         "jobID": {
                           "type": "string",
-                          "description": "The ID of the job handling the table creation"
+                          "description": "The ID of the asynchronous job"
                         }
                       },
                       "required": [
@@ -333,7 +333,8 @@
               "enum": [
                 "true",
                 "false"
-              ]
+              ],
+              "description": "Allow asynchronous processing, which will return a job ID. Note that this does not force asynchronouys processing. The caller must handle both synchronous and asynchronous responses."
             },
             "required": false
           },
@@ -773,18 +774,6 @@
         },
         "parameters": [
           {
-            "name": "x-glide-asynchronous",
-            "in": "header",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "true",
-                "false"
-              ]
-            },
-            "required": false
-          },
-          {
             "name": "appsToLink",
             "in": "query",
             "schema": {
@@ -912,12 +901,13 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "workflowID": {
-                          "type": "string"
+                        "jobID": {
+                          "type": "string",
+                          "description": "The ID of the asynchronous job"
                         }
                       },
                       "required": [
-                        "workflowID"
+                        "jobID"
                       ],
                       "additionalProperties": false
                     }
@@ -1116,7 +1106,8 @@
               "enum": [
                 "true",
                 "false"
-              ]
+              ],
+              "description": "Allow asynchronous processing, which will return a job ID. Note that this does not force asynchronouys processing. The caller must handle both synchronous and asynchronous responses."
             },
             "required": false
           },
@@ -2519,13 +2510,13 @@
                           "type": "string",
                           "enum": [
                             "running",
-                            "completed",
+                            "succeeded",
                             "failed"
                           ],
                           "description": "The current status of the job"
                         },
                         "result": {
-                          "description": "The result of the job, if it is completed"
+                          "description": "The result of the job, if it `succeeded`"
                         },
                         "error": {
                           "type": "object",
@@ -2539,7 +2530,7 @@
                             "message"
                           ],
                           "additionalProperties": false,
-                          "description": "The error information, if the job failed"
+                          "description": "The error information, if the job `failed`"
                         }
                       },
                       "required": [
