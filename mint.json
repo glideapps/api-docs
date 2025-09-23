@@ -1,81 +1,80 @@
 {
-  "openapi": "/openapi/swagger.json",
-  "name": "Glide API Docs",
-  "favicon": "/logo/favicon.svg",
-  "colors": {
-    "primary": "#18BED4",
-    "light": "#B7B2F0",
-    "dark": "#18BED4",
-    "anchors": {
-      "from": "#D7E779",
-      "to": "#07C983"
+    "openapi": "/openapi/swagger.json",
+    "name": "Glide API Docs",
+    "favicon": "/logo/favicon.svg",
+    "colors": {
+        "primary": "#18BED4",
+        "light": "#B7B2F0",
+        "dark": "#18BED4",
+        "anchors": {
+            "from": "#D7E779",
+            "to": "#07C983"
+        }
+    },
+    "topbarLinks": [
+        {
+            "name": "Glide User Docs",
+            "url": "https://www.glideapps.com/docs"
+        }
+    ],
+    "topbarCtaButton": {
+        "name": "Open Glide",
+        "url": "https://go.glideapps.com"
+    },
+    "navigation": [
+        {
+            "group": "General",
+            "pages": [
+                "api-reference/v2/general/introduction",
+                "api-reference/v2/general/authentication",
+                "api-reference/v2/general/errors",
+                "api-reference/v2/general/limits"
+            ]
+        },
+        {
+            "group": "Tables",
+            "pages": [
+                "api-reference/v2/tables/versioning",
+                "api-reference/v2/tables/get-tables",
+                "api-reference/v2/tables/get-table-rows",
+                "api-reference/v2/tables/get-table-row",
+                "api-reference/v2/tables/head-table-rows",
+                "api-reference/v2/tables/post-tables",
+                "api-reference/v2/tables/post-table-rows",
+                "api-reference/v2/tables/put-tables",
+                "api-reference/v2/tables/patch-table-row",
+                "api-reference/v2/tables/delete-table-row"
+            ]
+        },
+        {
+            "group": "Stashing",
+            "pages": [
+                "api-reference/v2/stashing/introduction",
+                "api-reference/v2/stashing/put-stashes-serial",
+                "api-reference/v2/stashing/delete-stash"
+            ]
+        },
+        {
+            "group": "Jobs",
+            "pages": ["api-reference/v2/jobs/get-job"]
+        },
+        {
+            "group": "Tutorials",
+            "pages": ["api-reference/v2/tutorials/bulk-import"]
+        },
+        {
+            "group": "Resources",
+            "pages": ["api-reference/v2/resources/postman", "api-reference/v2/resources/changelog"]
+        }
+    ],
+    "footerSocials": {
+        "youtube": "https://www.youtube.com/glideapps",
+        "x": "https://x.com/glideapps",
+        "github": "https://github.com/glideapps",
+        "linkedin": "https://www.linkedin.com/company/glideapps/"
+    },
+    "feedback": {
+        "thumbsRating": true,
+        "raiseIssue": true
     }
-  },
-  "topbarLinks": [
-    {
-      "name": "Glide User Docs",
-      "url": "https://www.glideapps.com/docs"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Open Glide",
-    "url": "https://go.glideapps.com"
-  },
-  "navigation": [
-    {
-      "group": "General",
-      "pages": [
-        "api-reference/v2/general/introduction",
-        "api-reference/v2/general/authentication",
-        "api-reference/v2/general/errors",
-        "api-reference/v2/general/limits"
-      ]
-    },
-    {
-      "group": "Tables",
-      "pages": [
-        "api-reference/v2/tables/versioning",
-        "api-reference/v2/tables/get-tables",
-        "api-reference/v2/tables/get-table-rows",
-        "api-reference/v2/tables/get-table-row",
-        "api-reference/v2/tables/head-table-rows",
-        "api-reference/v2/tables/post-tables",
-        "api-reference/v2/tables/post-table-rows",
-        "api-reference/v2/tables/put-tables",
-        "api-reference/v2/tables/patch-table-row",
-        "api-reference/v2/tables/delete-table-row"
-      ]
-    },
-    {
-      "group": "Stashing",
-      "pages": [
-        "api-reference/v2/stashing/introduction",
-        "api-reference/v2/stashing/put-stashes-serial",
-        "api-reference/v2/stashing/delete-stash"
-      ]
-    },
-    {
-      "group": "Tutorials",
-      "pages": [
-        "api-reference/v2/tutorials/bulk-import"
-      ]
-    },
-    {
-      "group": "Resources",
-      "pages": [
-        "api-reference/v2/resources/postman",
-        "api-reference/v2/resources/changelog"
-      ]
-    }
-  ],
-  "footerSocials": {
-    "youtube": "https://www.youtube.com/glideapps",
-    "x": "https://x.com/glideapps",
-    "github": "https://github.com/glideapps",
-    "linkedin": "https://www.linkedin.com/company/glideapps/"
-  },
-  "feedback": {
-    "thumbsRating": true,
-    "raiseIssue": true
-  }
 }
