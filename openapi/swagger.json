@@ -339,6 +339,11 @@
             "required": false
           },
           {
+            "name": "x-glide-raw-data",
+            "in": "header",
+            "required": false
+          },
+          {
             "name": "name",
             "in": "query",
             "schema": {
@@ -425,7 +430,8 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean"
+                                        "boolean",
+                                        "json"
                                       ]
                                     },
                                     {
@@ -449,7 +455,8 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean"
+                                                "boolean",
+                                                "json"
                                               ]
                                             }
                                           },
@@ -486,7 +493,8 @@
                                                     "dateTime",
                                                     "duration",
                                                     "number",
-                                                    "boolean"
+                                                    "boolean",
+                                                    "json"
                                                   ]
                                                 }
                                               },
@@ -1112,6 +1120,11 @@
             "required": false
           },
           {
+            "name": "x-glide-raw-data",
+            "in": "header",
+            "required": false
+          },
+          {
             "name": "if-match",
             "in": "header",
             "schema": {
@@ -1191,7 +1204,8 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean"
+                                        "boolean",
+                                        "json"
                                       ]
                                     },
                                     {
@@ -1215,7 +1229,8 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean"
+                                                "boolean",
+                                                "json"
                                               ]
                                             }
                                           },
@@ -1252,7 +1267,8 @@
                                                     "dateTime",
                                                     "duration",
                                                     "number",
-                                                    "boolean"
+                                                    "boolean",
+                                                    "json"
                                                   ]
                                                 }
                                               },
