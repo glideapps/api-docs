@@ -425,7 +425,8 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean"
+                                        "boolean",
+                                        "json"
                                       ]
                                     },
                                     {
@@ -449,7 +450,8 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean"
+                                                "boolean",
+                                                "json"
                                               ]
                                             }
                                           },
@@ -486,7 +488,8 @@
                                                     "dateTime",
                                                     "duration",
                                                     "number",
-                                                    "boolean"
+                                                    "boolean",
+                                                    "json"
                                                   ]
                                                 }
                                               },
@@ -1191,7 +1194,8 @@
                                         "dateTime",
                                         "duration",
                                         "number",
-                                        "boolean"
+                                        "boolean",
+                                        "json"
                                       ]
                                     },
                                     {
@@ -1215,7 +1219,8 @@
                                                 "dateTime",
                                                 "duration",
                                                 "number",
-                                                "boolean"
+                                                "boolean",
+                                                "json"
                                               ]
                                             }
                                           },
@@ -1252,7 +1257,8 @@
                                                     "dateTime",
                                                     "duration",
                                                     "number",
-                                                    "boolean"
+                                                    "boolean",
+                                                    "json"
                                                   ]
                                                 }
                                               },
