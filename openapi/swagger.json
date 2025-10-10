@@ -339,6 +339,11 @@
             "required": false
           },
           {
+            "name": "x-glide-raw-data",
+            "in": "header",
+            "required": false
+          },
+          {
             "name": "name",
             "in": "query",
             "schema": {
@@ -1112,6 +1117,11 @@
               ],
               "description": "Allow asynchronous processing, which will return a job ID. Note that this does not force asynchronouys processing. The caller must handle both synchronous and asynchronous responses."
             },
+            "required": false
+          },
+          {
+            "name": "x-glide-raw-data",
+            "in": "header",
             "required": false
           },
           {
