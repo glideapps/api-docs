@@ -2824,6 +2824,329 @@
         ],
         "description": "Deletes a stash and all its data"
       }
+    },
+    "/apps/{appID}/uploads": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "uploadID": {
+                          "type": "string",
+                          "description": "ID of the upload, e.g., `upload-123`",
+                          "example": "upload-123"
+                        },
+                        "uploadLocation": {
+                          "type": "string",
+                          "description": "Pre-signed upload URL for the file bytes",
+                          "example": "https://storage.googleapis.com/glide-uploads/example?X-Goog-Algorithm=GOOG4-RSA-SHA256"
+                        }
+                      },
+                      "required": [
+                        "uploadID",
+                        "uploadLocation"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "maxUploadSize": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "maxUploadSize"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "appID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the app, e.g., `mT91fPcZCWigkZXgSZGJ`",
+              "example": "mT91fPcZCWigkZXgSZGJ"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contentType": {
+                    "type": "string",
+                    "description": "MIME type of the file, e.g., `image/png`",
+                    "example": "image/png"
+                  },
+                  "contentLength": {
+                    "type": "number",
+                    "description": "File size in bytes",
+                    "example": 1024
+                  },
+                  "fileName": {
+                    "type": "string",
+                    "description": "Name of the file",
+                    "example": "logo.png"
+                  }
+                },
+                "required": [
+                  "contentType",
+                  "contentLength",
+                  "fileName"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apps/{appID}/uploads/{uploadID}/complete": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "Public URL for the uploaded file",
+                          "example": "https://storage.googleapis.com/glide-uploads/example.png"
+                        }
+                      },
+                      "required": [
+                        "url"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "appID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the app, e.g., `mT91fPcZCWigkZXgSZGJ`",
+              "example": "mT91fPcZCWigkZXgSZGJ"
+            },
+            "required": true
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "description": "ID of the upload, e.g., `upload-123`",
+              "example": "upload-123"
+            },
+            "required": true
+          }
+        ]
+      }
     }
   },
   "security": [

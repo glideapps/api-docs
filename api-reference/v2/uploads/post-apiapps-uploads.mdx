@@ -1,0 +1,48 @@
+---
+title: Create Upload
+openapi: post /apps/{appID}/uploads
+---
+
+Create an upload session and get a pre-signed upload URL. Upload the file bytes to the `uploadLocation`, then call the complete endpoint to finalize the file and receive a public URL.
+
+## Example
+
+```bash
+curl --request POST \
+  --url https://api.glideapps.com/apps/$APP_ID/uploads \
+  --header "Authorization: Bearer $GLIDE_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "contentType": "image/png",
+    "contentLength": 1024,
+    "fileName": "logo.png"
+  }'
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "uploadID": "upload-123",
+    "uploadLocation": "https://storage.googleapis.com/glide-uploads/example?X-Goog-Algorithm=GOOG4-RSA-SHA256"
+  }
+}
+```
+
+Then upload the file bytes to `uploadLocation`:
+
+```bash
+curl --request PUT \
+  --url "$UPLOAD_LOCATION" \
+  --header "Content-Type: image/png" \
+  --upload-file ./logo.png
+```
+
+Finally, complete the upload:
+
+```bash
+curl --request POST \
+  --url https://api.glideapps.com/apps/$APP_ID/uploads/$UPLOAD_ID/complete \
+  --header "Authorization: Bearer $GLIDE_API_KEY"
+```
