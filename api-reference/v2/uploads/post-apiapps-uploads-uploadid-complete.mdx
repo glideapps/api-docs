@@ -1,0 +1,10 @@
+---
+title: Complete Upload
+openapi: post /apps/{appID}/uploads/{uploadID}/complete
+---
+
+Finalize an upload and receive the public URL for the file. Use the `uploadID` from the create upload response.
+
+If the uploaded object is missing or incomplete, this endpoint returns a 409.
+
+Note that Glide will delete this file within 30 days if the URL is not stored in a table in Glide.

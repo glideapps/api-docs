@@ -49,6 +49,13 @@
         ]
       },
       {
+          "group": "Uploads",
+          "pages": [
+              "api-reference/v2/uploads/post-apiapps-uploads",
+              "api-reference/v2/uploads/post-apiapps-uploads-uploadid-complete"
+          ]
+      },
+      {
         "group": "Tutorials",
         "pages": [
           "api-reference/v2/tutorials/bulk-import"
