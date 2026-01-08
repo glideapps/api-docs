@@ -3,9 +3,16 @@ title: Create Upload
 openapi: post /apps/{appID}/uploads
 ---
 
+Upload a file to Glide. There are two ways to upload:
+
+1. **Direct upload (three-step process)**: Create an upload session, upload file bytes to a pre-signed URL, then complete the upload.
+2. **URL upload (single step)**: Provide a source URL and Glide will download and store the file for you.
+
+## Option 1: Direct Upload
+
 Create an upload session and get a pre-signed upload URL. Upload the file bytes to the `uploadLocation`, then call the complete endpoint to finalize the file and receive a public URL.
 
-## Example
+### Example
 
 ```bash
 curl --request POST \
@@ -46,5 +53,51 @@ curl --request POST \
   --url https://api.glideapps.com/apps/$APP_ID/uploads/$UPLOAD_ID/complete \
   --header "Authorization: Bearer $GLIDE_API_KEY"
 ```
+
+## Option 2: URL Upload
+
+Provide a `sourceURL` and Glide will download the file and upload it directly. This completes in a single API call and returns the final URL immediately.
+
+### Example
+
+```bash
+curl --request POST \
+  --url https://api.glideapps.com/apps/$APP_ID/uploads \
+  --header "Authorization: Bearer $GLIDE_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "sourceURL": "https://example.com/images/logo.png"
+  }'
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "url": "https://storage.googleapis.com/glide-uploads/uploaded-file.png"
+  }
+}
+```
+
+### Optional Parameters
+
+You can optionally override the filename and content type:
+
+```bash
+curl --request POST \
+  --url https://api.glideapps.com/apps/$APP_ID/uploads \
+  --header "Authorization: Bearer $GLIDE_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "sourceURL": "https://example.com/images/logo.png",
+    "fileName": "my-custom-name.png",
+    "contentType": "image/png"
+  }'
+```
+
+If not provided, the filename is extracted from the URL path or the `Content-Disposition` header, and the content type is taken from the response headers.
+
+---
 
 Note that Glide will delete this file within 30 days if the URL is not stored in a table in Glide.
