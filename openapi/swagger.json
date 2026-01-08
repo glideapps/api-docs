@@ -2833,31 +2833,94 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
+                  "oneOf": [
+                    {
                       "type": "object",
+                      "title": "Direct Upload Response",
+                      "description": "Response when using direct upload (with contentType, contentLength, fileName)",
                       "properties": {
-                        "uploadID": {
-                          "type": "string",
-                          "description": "ID of the upload, e.g., `upload-123`",
-                          "example": "upload-123"
-                        },
-                        "uploadLocation": {
-                          "type": "string",
-                          "description": "Pre-signed upload URL for the file bytes",
-                          "example": "https://storage.googleapis.com/glide-uploads/example?X-Goog-Algorithm=GOOG4-RSA-SHA256"
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "uploadID": {
+                              "type": "string",
+                              "description": "ID of the upload, e.g., `upload-123`",
+                              "example": "upload-123"
+                            },
+                            "uploadLocation": {
+                              "type": "string",
+                              "description": "Pre-signed upload URL for the file bytes",
+                              "example": "https://storage.googleapis.com/glide-uploads/example?X-Goog-Algorithm=GOOG4-RSA-SHA256"
+                            }
+                          },
+                          "required": [
+                            "uploadID",
+                            "uploadLocation"
+                          ],
+                          "additionalProperties": false
                         }
                       },
                       "required": [
-                        "uploadID",
-                        "uploadLocation"
+                        "data"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "title": "URL Upload Response",
+                      "description": "Response when using URL upload (with sourceURL)",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "description": "Public URL of the uploaded file",
+                              "example": "https://storage.googleapis.com/glide-uploads/uploaded-file.png"
+                            }
+                          },
+                          "required": [
+                            "url"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid source URL or download failed (URL upload only)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
                       ],
                       "additionalProperties": false
                     }
                   },
                   "required": [
-                    "data"
+                    "error"
                   ],
                   "additionalProperties": false
                 }
@@ -2865,7 +2928,7 @@
             }
           },
           "402": {
-            "description": "",
+            "description": "Upload quota exceeded",
             "content": {
               "application/json": {
                 "schema": {
@@ -2928,8 +2991,40 @@
               }
             }
           },
+          "408": {
+            "description": "Download timed out (URL upload only)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
           "413": {
-            "description": "",
+            "description": "File too large",
             "content": {
               "application/json": {
                 "schema": {
@@ -2977,30 +3072,63 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "contentType": {
-                    "type": "string",
-                    "description": "MIME type of the file, e.g., `image/png`",
-                    "example": "image/png"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "title": "Direct Upload",
+                    "description": "Upload file bytes directly (three-step process)",
+                    "properties": {
+                      "contentType": {
+                        "type": "string",
+                        "description": "MIME type of the file, e.g., `image/png`",
+                        "example": "image/png"
+                      },
+                      "contentLength": {
+                        "type": "number",
+                        "description": "File size in bytes",
+                        "example": 1024
+                      },
+                      "fileName": {
+                        "type": "string",
+                        "description": "Name of the file",
+                        "example": "logo.png"
+                      }
+                    },
+                    "required": [
+                      "contentType",
+                      "contentLength",
+                      "fileName"
+                    ],
+                    "additionalProperties": false
                   },
-                  "contentLength": {
-                    "type": "number",
-                    "description": "File size in bytes",
-                    "example": 1024
-                  },
-                  "fileName": {
-                    "type": "string",
-                    "description": "Name of the file",
-                    "example": "logo.png"
+                  {
+                    "type": "object",
+                    "title": "URL Upload",
+                    "description": "Upload from a URL (single-step process)",
+                    "properties": {
+                      "sourceURL": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL to download the file from",
+                        "example": "https://example.com/images/logo.png"
+                      },
+                      "fileName": {
+                        "type": "string",
+                        "description": "Optional: Override the filename (extracted from URL if not provided)",
+                        "example": "my-logo.png"
+                      },
+                      "contentType": {
+                        "type": "string",
+                        "description": "Optional: Override the content type (detected from response headers if not provided)",
+                        "example": "image/png"
+                      }
+                    },
+                    "required": [
+                      "sourceURL"
+                    ],
+                    "additionalProperties": false
                   }
-                },
-                "required": [
-                  "contentType",
-                  "contentLength",
-                  "fileName"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           }
