@@ -5,6 +5,12 @@ openapi: post /apps/{appID}/uploads/{uploadID}/complete
 
 Finalize an upload and receive the public URL for the file. Use the `uploadID` from the create upload response.
 
-If the uploaded object is missing or incomplete, this endpoint returns a 409.
+## Error Responses
+
+| Status | Description |
+|--------|-------------|
+| 402 | Upload quota exceeded. The file has been deleted. |
+| 409 | Upload incomplete. The file bytes were not fully uploaded to the `uploadLocation`. |
+| 413 | File too large. The uploaded file exceeds the maximum allowed size. The file has been deleted. |
 
 Note that Glide will delete this file within 30 days if the URL is not stored in a table in Glide.
